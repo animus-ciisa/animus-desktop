@@ -1,0 +1,22 @@
+//validar email
+http://localhost:1111/animus-rest-test?method=home/validate-email&exists=true
+
+registrar hogar.
+http://localhost:1111/animus-rest-test?method=home 
+
+correo == true existe y no lo creo
+correo == false // le doy la opcion de crear usuario home123456
+
+
+https://www.newtonsoft.com/json/help/html/QueryingLINQtoJSON.htm
+string id = 
+string image = 
+string email = 
+string nick = 
+string session =
+
+no se puede convertir newtsonobjectlinq in jobject foreach
+
+var jsonObject = serializer.DeserializeObject(rdr.ReadToEnd());
+
+
