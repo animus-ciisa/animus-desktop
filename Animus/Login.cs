@@ -26,6 +26,8 @@ namespace Animus
         public static string imagePath = "", nameArchive = "";
         public static string imageDefault = ConfigurationManager.AppSettings["imageDefault"];
         public static string pathImageDefault = ConfigurationManager.AppSettings["pathImage"];
+
+        //Bienvenidos matias, emilio, Rodrigo
         public Login()
         {
             InitializeComponent();
