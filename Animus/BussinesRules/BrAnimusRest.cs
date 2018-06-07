@@ -27,7 +27,20 @@ namespace Animus.BussinesRules
             }
             return resp;
         }
-
+        internal void validateAuth(out string status, out string code, CoHome coHome)
+        {
+            code = string.Empty;
+            status = string.Empty;
+            try
+            {
+                DaAnimusRest da = new DaAnimusRest();
+                da.validateAuth(out status, out code, coHome);
+            }
+            catch (Exception ex)
+            {
+                coHome.idHome = 0;
+            }
+        }
         public CoHome registerHome(out string status, out string code, CoHome coHome)
         {
             code = string.Empty;

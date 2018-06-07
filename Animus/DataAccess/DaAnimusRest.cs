@@ -141,6 +141,68 @@ namespace Animus.DataAccess
 
         }
 
+
+        internal void validateAuth(out string status, out string code, CoHome coHome)
+        {
+
+            status = string.Empty;
+            code = string.Empty;
+            try
+            {
+
+                string requestParams = "{ \"email\": \"" + coHome.mail + "\", \"password\": \"" + coHome.password + "\" }";
+                //string requestParams = ""; //format information you need to pass into that string ('info={ "EmployeeID": [ "1234567", "7654321" ], "Salary": true, 
+                HttpWebRequest webRequest;
+                string urlAuth = ConfigurationManager.AppSettings["urlValidateAuth"];
+                webRequest = (HttpWebRequest)WebRequest.Create(urlAuth);
+
+                webRequest.Method = "POST";
+                webRequest.ContentType = "application/json";
+
+                byte[] byteArray = Encoding.UTF8.GetBytes(requestParams);
+                webRequest.ContentLength = byteArray.Length;
+                using (Stream requestStream = webRequest.GetRequestStream())
+                {
+                    requestStream.Write(byteArray, 0, byteArray.Length);
+                }
+
+
+                // Get the response.
+                using (WebResponse response = webRequest.GetResponse())
+                {
+                    using (Stream responseStream = response.GetResponseStream())
+                    {
+                        StreamReader rdr = new StreamReader(responseStream, Encoding.UTF8);
+                        var rawJson = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                        JObject json = JObject.Parse(rawJson);
+
+
+                        status = json["status"].ToString();
+                        code = json["code"].ToString();
+
+
+                        //aqui debo insertar en bd local
+                        string id = json["data"]["id"].ToString();
+                        // string image = json["data"]["image"].ToString();
+                        string email = json["data"]["email"].ToString();
+                        string nick = json["data"]["nick"].ToString();
+                        string tooken = json["data"]["session"]["token"].ToString();
+                        //string session = json["data"]["sesion"].ToString();
+                        coHome.idHome = Convert.ToInt32(id);
+                        coHome.nickHome = nick;
+                        coHome.mail = email;
+                        coHome.tookenHome = tooken;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                coHome.idHome = 0;
+
+            }
+        }
+
         internal bool validateMail(string mail, out string status, out string code)
         {
             status = string.Empty;

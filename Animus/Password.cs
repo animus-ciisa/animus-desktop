@@ -50,115 +50,159 @@ namespace Animus
                 if (ValidatePassword(txtPassword.Text) == false)
                     return;
 
-
-                //devuelde id select last_insert_rowid();
-                if (mailPassword != "" && nickPassword != "" && txtPassword.Text != "")
-                {
-                    CoHome coHome = new CoHome();
-                    coHome.nickHome = nickPassword;
-                    coHome.password = txtPassword.Text;
-                    coHome.mail = mailPassword;
-                    string status = string.Empty;
-                    string code = string.Empty;
-
-                    string fullimagepath = Path.Combine(Application.StartupPath);
-
-                    string path = System.IO.Directory.GetCurrentDirectory().Replace("\\bin\\Debug", "");
-                    path = path + "\\" + "usr.txt";
-
-                    //Consumir post al insert casa
-                    coHome = new BrAnimusRest().registerHome(out status, out code, coHome);
-
-                    if (status.ToUpper().Trim() != "OK" || code != "201")
+                if (btnSaveHome.Text.ToUpper().Trim().Contains("HOGAR"))
+                { // INSERT HOGAR.
+                    //devuelde id select last_insert_rowid();
+                    if (mailPassword != "" && nickPassword != "" && txtPassword.Text != "")
                     {
-                        MetroFramework.MetroMessageBox.Show(this, "No existe conexión con el servidor, vuelva a reintentarlo.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
+                        CoHome coHome = new CoHome();
+                        coHome.nickHome = nickPassword;
+                        coHome.password = txtPassword.Text;
+                        coHome.mail = mailPassword;
+                        string status = string.Empty;
+                        string code = string.Empty;
 
-                    if (coHome.idHome != 0)
-                    {
-                        string response = string.Empty;
-                        //insertamos home en base de datos
-                        new BrHome().InsertHome(coHome, out response);
+                        string fullimagepath = Path.Combine(Application.StartupPath);
 
-                        //GUARDA ARCHIVO CON HOME,ID,MAIL,PASS
-                        if (File.Exists(path) && response == "OK")
+                        string path = System.IO.Directory.GetCurrentDirectory().Replace("\\bin\\Debug", "");
+                        path = path + "\\" + "usr.txt";
+
+                        //Consumir post al insert casa
+                        coHome = new BrAnimusRest().registerHome(out status, out code, coHome);
+
+                        if (status.ToUpper().Trim() != "OK" || code != "201")
                         {
-                            //remove text archive
-                            //File.Delete(path);
-                            //create archive
-                            idHome = coHome.idHome;
-                            string createText = coHome.idHome + ";" + coHome.mail + ";" + coHome.nickHome;
-                            File.WriteAllText(path, createText);
-
-                            this.Close();
-                            DashBoardMenu dashBoard = new DashBoardMenu();
-                            dashBoard.ShowDialog();
+                            MetroFramework.MetroMessageBox.Show(this, "No existe conexión con el servidor, vuelva a reintentarlo.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
                         }
 
+                        if (coHome.idHome != 0)
+                        {
+                            string response = string.Empty;
+                            //insertamos home en base de datos
+                            new BrHome().InsertHome(coHome, out response);
+
+                            //GUARDA ARCHIVO CON HOME,ID,MAIL,PASS
+                            if (File.Exists(path) && response == "OK")
+                            {
+                                //remove text archive
+                                //File.Delete(path);
+                                //create archive
+                                idHome = coHome.idHome;
+                                string createText = coHome.idHome + ";" + coHome.mail + ";" + coHome.nickHome;
+                                File.WriteAllText(path, createText);
+
+                                this.Close();
+                                DashBoardMenu dashBoard = new DashBoardMenu();
+                                dashBoard.ShowDialog();
+                            }
+
+                        }
                     }
-
-                    //CoHome coHome = new CoHome();
-                    //coHome.nickHome = nickPassword;
-                    //coHome.password = txtPassword.Text;
-                    //coHome.mail = mailPassword;
-
-                    //if (imageHomePath != "")
-                    //    coHome.pathImageHome = imageHomePath;
-
-                    //if (nameArchiveHome != "")
-                    //    coHome.imageHome = nameArchiveHome;
-
-                    //int homeIdRescue = 0;
-                    ////vamos a validar si existe el home con el correo y nick
-                    //int countExist = new BrHome().HomeExits(coHome, out homeIdRescue);
-                    //if (countExist == 0)
-                    //{
-                    //    //inserto home
-                    //    idHome = new BrHome().InsertHome(coHome);
-                    //    if (idHome > 0)
-                    //    {
-                    //        //Mando A llamar menu
-                    //        this.Hide();
-
-                    //        DashBoardMenu dashBoard = new DashBoardMenu();
-                    //        dashBoard.ShowDialog();
-                    //    }
-                    //    else
-                    //    {
-                    //        MetroFramework.MetroMessageBox.Show(this, "No se pudo registrar el Hogar, pongase en contacto con el administrador.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    if (countExist == 1 && homeIdRescue != 0)
-                    //    {
-                    //        coHome.idHome = homeIdRescue;
-                    //        //validar password
-                    //        Boolean validatePass = new BrHome().validatePassword(coHome);
-
-                    //        if (validatePass == false)
-                    //        {
-                    //            MetroFramework.MetroMessageBox.Show(this, "La contraseña es incorrecta.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //            return;
-                    //        }
-
-
-
-                    //        idHome = homeIdRescue;
-                    //        //Mando A llamar menu
-                    //        this.Hide();
-
-                    //        DashBoardMenu dashBoard = new DashBoardMenu();
-                    //        dashBoard.ShowDialog();
-                    //    }
-                    //    else
-                    //    {
-                    //        MetroFramework.MetroMessageBox.Show(this, "No se pudieron rescatar los datos del Hogar, pongase en contacto con el administrador.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //    }
-                    //}
-
                 }
+                else // validate auth
+                {
+                    if (mailPassword != "" && txtPassword.Text != "")
+                    {
+                        CoHome coHome = new CoHome();
+                        coHome.mail = mailPassword;
+                        coHome.password = txtPassword.Text;
+                        string status = string.Empty;
+                        string code = string.Empty;
+
+                        //consume validate password
+                        new BrAnimusRest().validateAuth(out status, out code, coHome);
+
+                        if (status.ToUpper().Trim() != "OK" || code == "402")
+                        {
+                            MetroFramework.MetroMessageBox.Show(this, "Usuario o Password Incorrecto.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+
+                        if (status.ToUpper().Trim() != "OK" || code != "201")
+                        {
+                            MetroFramework.MetroMessageBox.Show(this, "No existe conexión con el servidor, vuelva a reintentarlo.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+
+                        if (coHome.idHome != 0)
+                        {
+                            // mando a llamar al dashboard
+                            this.Hide();
+                            DashBoardMenu d = new DashBoardMenu();
+                            d.ShowDialog();
+                        }
+                        else
+                        {
+                            MetroFramework.MetroMessageBox.Show(this, "No se pudo rescatar los datos del usuario, favor reintentar.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                    }
+                }
+
+                #region
+                //CoHome coHome = new CoHome();
+                //coHome.nickHome = nickPassword;
+                //coHome.password = txtPassword.Text;
+                //coHome.mail = mailPassword;
+
+                //if (imageHomePath != "")
+                //    coHome.pathImageHome = imageHomePath;
+
+                //if (nameArchiveHome != "")
+                //    coHome.imageHome = nameArchiveHome;
+
+                //int homeIdRescue = 0;
+                ////vamos a validar si existe el home con el correo y nick
+                //int countExist = new BrHome().HomeExits(coHome, out homeIdRescue);
+                //if (countExist == 0)
+                //{
+                //    //inserto home
+                //    idHome = new BrHome().InsertHome(coHome);
+                //    if (idHome > 0)
+                //    {
+                //        //Mando A llamar menu
+                //        this.Hide();
+
+                //        DashBoardMenu dashBoard = new DashBoardMenu();
+                //        dashBoard.ShowDialog();
+                //    }
+                //    else
+                //    {
+                //        MetroFramework.MetroMessageBox.Show(this, "No se pudo registrar el Hogar, pongase en contacto con el administrador.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    }
+                //}
+                //else
+                //{
+                //    if (countExist == 1 && homeIdRescue != 0)
+                //    {
+                //        coHome.idHome = homeIdRescue;
+                //        //validar password
+                //        Boolean validatePass = new BrHome().validatePassword(coHome);
+
+                //        if (validatePass == false)
+                //        {
+                //            MetroFramework.MetroMessageBox.Show(this, "La contraseña es incorrecta.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //            return;
+                //        }
+
+
+
+                //        idHome = homeIdRescue;
+                //        //Mando A llamar menu
+                //        this.Hide();
+
+                //        DashBoardMenu dashBoard = new DashBoardMenu();
+                //        dashBoard.ShowDialog();
+                //    }
+                //    else
+                //    {
+                //        MetroFramework.MetroMessageBox.Show(this, "No se pudieron rescatar los datos del Hogar, pongase en contacto con el administrador.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    }
+                //}
+                #endregion
+
+
             }
             catch (Exception ex)
             {
@@ -180,7 +224,46 @@ namespace Animus
             mailPassword = Login.mail;
             nickPassword = Login.nick;
 
+            int idHome = Program.idHome;
+            if (idHome != 0)
+            {
+                DataTable dtHome = new BrHome().GetHomeId(idHome);
+                if (dtHome.Rows.Count > 0)
+                {
+                    lblHogar.Visible = true;
+                    string name = dtHome.Rows[0]["nickhome"].ToString();
+                    lblHogar.Text = name;
+                    btnSaveHome.Text = "Iniciar Sessión";
+                    this.btnSaveHome.Location = new System.Drawing.Point(135, 300);
+                    this.btnVolver.Visible = false;
+                    metroLabel1.Visible = false;
+                    this.linkPass.Location = new System.Drawing.Point(138, 356);
+                    this.linkPass.Visible = true;
+                    btnSaveHome.Enabled = false;
+                    mailPassword = dtHome.Rows[0]["mail"].ToString();
 
+                }
+                else
+                {
+                    btnSaveHome.Text = "Registrar Hogar";
+                    lblHogar.Visible = false;
+                    this.btnSaveHome.Location = new System.Drawing.Point(212, 337);
+                    metroLabel1.Visible = true;
+                    this.linkPass.Visible = false;
+                    btnSaveHome.Enabled = true;
+
+                }
+            }
+            else
+            {
+                btnSaveHome.Text = "Registrar Hogar";
+                lblHogar.Visible = false;
+                this.btnSaveHome.Location = new System.Drawing.Point(212, 337);
+                metroLabel1.Visible = true;
+                this.linkPass.Visible = false;
+                btnSaveHome.Enabled = true;
+
+            }
 
             //if (Login.imagePath != "")
             //    imageHomePath = Login.imagePath;
@@ -235,6 +318,15 @@ namespace Animus
             //    }
             //}
             //else { btnSaveHome.Text = "Registrar Hogar"; }
+        }
+
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (txtPassword.Text.Trim() != "")
+                btnSaveHome.Enabled = true;
+            else
+                btnSaveHome.Enabled = false;
         }
     }
 }

@@ -36,6 +36,8 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtPassword = new MetroFramework.Controls.MetroTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblHogar = new MetroFramework.Controls.MetroLabel();
+            this.linkPass = new MetroFramework.Controls.MetroLink();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -48,7 +50,7 @@
             this.btnSaveHome.Size = new System.Drawing.Size(149, 43);
             this.btnSaveHome.TabIndex = 18;
             this.btnSaveHome.Text = "Registrar Hogar";
-            this.btnSaveHome.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnSaveHome.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSaveHome.UseSelectable = true;
             this.btnSaveHome.Click += new System.EventHandler(this.btnSaveHome_Click);
             // 
@@ -111,6 +113,8 @@
             this.txtPassword.WaterMark = "Ingrese la Contraseña";
             this.txtPassword.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtPassword.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
+
             // 
             // pictureBox1
             // 
@@ -122,11 +126,33 @@
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
             // 
+            // lblHogar
+            // 
+            this.lblHogar.AutoSize = true;
+            this.lblHogar.Location = new System.Drawing.Point(179, 210);
+            this.lblHogar.Name = "lblHogar";
+            this.lblHogar.Size = new System.Drawing.Size(60, 19);
+            this.lblHogar.TabIndex = 19;
+            this.lblHogar.Text = "lblHogar";
+            this.lblHogar.Visible = false;
+            // 
+            // linkPass
+            // 
+            this.linkPass.Location = new System.Drawing.Point(138, 386);
+            this.linkPass.Name = "linkPass";
+            this.linkPass.Size = new System.Drawing.Size(136, 23);
+            this.linkPass.TabIndex = 20;
+            this.linkPass.Text = "olvidé mi contraseña";
+            this.linkPass.UseSelectable = true;
+            this.linkPass.Visible = false;
+            // 
             // Password
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(427, 415);
+            this.Controls.Add(this.linkPass);
+            this.Controls.Add(this.lblHogar);
             this.Controls.Add(this.btnSaveHome);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.metroLabel1);
@@ -150,5 +176,7 @@
         private MetroFramework.Controls.MetroTile btnVolver;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private MetroFramework.Controls.MetroLabel lblHogar;
+        private MetroFramework.Controls.MetroLink linkPass;
     }
 }

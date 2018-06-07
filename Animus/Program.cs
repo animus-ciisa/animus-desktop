@@ -9,6 +9,7 @@ namespace Animus
 {
     static class Program
     {
+        public static int idHome = 0;
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
@@ -32,7 +33,10 @@ namespace Animus
                     while ((s = sr.ReadLine()) != null)
                     {
                         if (s.Contains(";"))
+                        {
+                            idHome = Convert.ToInt32(s.Split(';')[0].ToString());
                             status = "ok";
+                        }
                     }
                     if (status == "ok")
                         Application.Run(new Password());
