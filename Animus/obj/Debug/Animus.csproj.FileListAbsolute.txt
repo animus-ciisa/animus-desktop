@@ -38,12 +38,14 @@ C:\inetpub\wwwroot\tesis\Animus\Animus\bin\Debug\MaterialDesignColors.pdb
 C:\inetpub\wwwroot\tesis\Animus\Animus\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\inetpub\wwwroot\tesis\Animus\Animus\bin\Debug\MaterialDesignThemes.Wpf.xml
 C:\inetpub\wwwroot\tesis\Animus\Animus\bin\Debug\System.Data.SQLite.xml
-C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.dashBoard2.resources
+C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.Alarms.resources
+C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.CamerasAndMonitors.resources
+C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.ControlCenter.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.DashBoardMenu.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.Login.resources
+C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.msgCloseSession.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.Password.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.Properties.Resources.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.csproj.GenerateResource.Cache
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.exe
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.pdb
-C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.csprojResolveAssemblyReference.cache

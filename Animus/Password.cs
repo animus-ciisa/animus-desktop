@@ -22,6 +22,7 @@ namespace Animus
         static string imageHomePath = "";
         static string nameArchiveHome = "";
         public static int idHome = 0;
+        public static CoHome homeControl;
         public Password()
         {
             InitializeComponent();
@@ -92,9 +93,13 @@ namespace Animus
                                 string createText = coHome.idHome + ";" + coHome.mail + ";" + coHome.nickHome;
                                 File.WriteAllText(path, createText);
 
+                                //this.Close();
+                                //DashBoardMenu dashBoard = new DashBoardMenu();
+                                //dashBoard.ShowDialog();
+
                                 this.Close();
-                                DashBoardMenu dashBoard = new DashBoardMenu();
-                                dashBoard.ShowDialog();
+                                ControlCenter c = new ControlCenter();
+                                c.ShowDialog();
                             }
 
                         }
@@ -128,9 +133,13 @@ namespace Animus
                         if (coHome.idHome != 0)
                         {
                             // mando a llamar al dashboard
+                            //this.Hide();
+                            //DashBoardMenu d = new DashBoardMenu();
+                            //d.ShowDialog();
+                            homeControl = coHome;
                             this.Hide();
-                            DashBoardMenu d = new DashBoardMenu();
-                            d.ShowDialog();
+                            ControlCenter c = new ControlCenter();
+                            c.ShowDialog();
                         }
                         else
                         {

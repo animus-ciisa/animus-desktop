@@ -279,5 +279,52 @@ namespace Animus.DataAccess
             return responseMethod;
         }
 
+
+        internal string renewToken(string tooken, out string status, out string code)
+        {
+            status = string.Empty;
+            code = string.Empty;
+            string token = string.Empty;
+            try
+            {
+                HttpWebRequest webRequest;
+                string urlEmail = ConfigurationManager.AppSettings["urlRenewToken"];
+
+                webRequest = (HttpWebRequest)WebRequest.Create(urlEmail);
+                string requestParams = "";
+
+                webRequest.Method = "POST";
+                webRequest.ContentType = "application/json";
+                webRequest.Headers.Add("Authorization", "bearer " + tooken);
+
+                byte[] byteArray = Encoding.UTF8.GetBytes(requestParams);
+                webRequest.ContentLength = byteArray.Length;
+                using (Stream requestStream = webRequest.GetRequestStream())
+                {
+                    requestStream.Write(byteArray, 0, byteArray.Length);
+                }
+
+                // Get the response.
+                using (WebResponse response = webRequest.GetResponse())
+                {
+                    using (Stream responseStream = response.GetResponseStream())
+                    {
+                        StreamReader rdr = new StreamReader(responseStream, Encoding.UTF8);
+                        var rawJson = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                        JObject json = JObject.Parse(rawJson);  //Turns your raw string into a key value lookup
+
+
+                        token = json["data"]["token"].ToString();
+                        status = json["status"].ToString();
+                        code = json["code"].ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return token;
+        }
     }
 }
