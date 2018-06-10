@@ -20,7 +20,6 @@ namespace Animus
             Application.SetCompatibleTextRenderingDefault(false);
 
 
-
             string path = System.IO.Directory.GetCurrentDirectory().Replace("\\bin\\Debug", "");
             path = path + "\\" + "usr.txt";
 

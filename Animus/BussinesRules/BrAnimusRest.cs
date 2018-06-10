@@ -56,5 +56,21 @@ namespace Animus.BussinesRules
                 return coHome;
             }
         }
+
+        internal string renewToken(string tooken, out string status, out string code)
+        {
+            status = string.Empty;
+            code = string.Empty;
+
+            try
+            {
+                DaAnimusRest da = new DaAnimusRest();
+                return da.renewToken(tooken, out status, out code);
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+        }
     }
 }

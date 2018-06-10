@@ -88,16 +88,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alarms.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Alarms.Designer.cs">
+      <DependentUpon>Alarms.cs</DependentUpon>
+    </Compile>
     <Compile Include="BussinesRules\BrAnimusRest.cs" />
     <Compile Include="BussinesRules\BrHome.cs" />
     <Compile Include="BussinesRules\BrTest.cs" />
+    <Compile Include="CamerasAndMonitors.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CamerasAndMonitors.Designer.cs">
+      <DependentUpon>CamerasAndMonitors.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\CoHome.cs" />
     <Compile Include="Common\CoTest.cs" />
-    <Compile Include="dashBoard2.cs">
+    <Compile Include="ControlCenter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="dashBoard2.Designer.cs">
-      <DependentUpon>dashBoard2.cs</DependentUpon>
+    <Compile Include="ControlCenter.Designer.cs">
+      <DependentUpon>ControlCenter.cs</DependentUpon>
     </Compile>
     <Compile Include="DashBoardMenu.cs">
       <SubType>Form</SubType>
@@ -115,6 +127,12 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="msgCloseSession.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="msgCloseSession.Designer.cs">
+      <DependentUpon>msgCloseSession.cs</DependentUpon>
+    </Compile>
     <Compile Include="Password.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,14 +141,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="dashBoard2.resx">
-      <DependentUpon>dashBoard2.cs</DependentUpon>
+    <EmbeddedResource Include="Alarms.resx">
+      <DependentUpon>Alarms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CamerasAndMonitors.resx">
+      <DependentUpon>CamerasAndMonitors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlCenter.resx">
+      <DependentUpon>ControlCenter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DashBoardMenu.resx">
       <DependentUpon>DashBoardMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="msgCloseSession.resx">
+      <DependentUpon>msgCloseSession.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Password.resx">
       <DependentUpon>Password.cs</DependentUpon>
@@ -165,23 +192,44 @@
     <Folder Include="DataBase\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\Application\alarm1.png" />
+    <Content Include="Images\Application\cam2.png" />
+    <Content Include="Images\Application\camera.png" />
+    <Content Include="Images\Application\camera1.jpg" />
+    <Content Include="Images\Application\camera33.png" />
     <Content Include="Images\Application\casa01.PNG" />
+    <Content Include="Images\Application\Clock1.png" />
     <Content Include="Images\Application\close.ico" />
     <Content Include="Images\Application\close1.png" />
     <Content Include="Images\Application\close_blue.ico" />
     <Content Include="Images\Application\exclamations.ico" />
     <Content Include="Images\Application\folder.ico" />
+    <Content Include="Images\Application\hamburger.png" />
+    <Content Include="Images\Application\Home-Button.png" />
+    <Content Include="Images\Application\home_grey.png" />
+    <Content Include="Images\Application\home_white.png" />
     <Content Include="Images\Application\house.jpg" />
     <Content Include="Images\Application\ico-close.png" />
+    <Content Include="Images\Application\iconhapy.png" />
     <Content Include="Images\Application\icox.png" />
     <Content Include="Images\Application\llave.ico" />
     <Content Include="Images\Application\mail.ico" />
+    <Content Include="Images\Application\men.png" />
     <Content Include="Images\Application\menu.png" />
     <Content Include="Images\Application\menu01.png" />
     <Content Include="Images\Application\metrouser.ico" />
+    <Content Include="Images\Application\nav_3.png" />
+    <Content Include="Images\Application\nav_icon.jpg" />
     <Content Include="Images\Application\okcheck.ico" />
+    <Content Include="Images\Application\phone.jpg" />
+    <Content Include="Images\Application\phonewhite.jpg" />
+    <Content Include="Images\Application\phone_trans.jpg" />
+    <Content Include="Images\Application\Update.ico" />
     <Content Include="Images\Application\upload.ico" />
     <Content Include="Images\Application\upload32.ico" />
+    <Content Include="Images\Application\user.png" />
+    <Content Include="Images\Application\x-close-icon-white.png" />
+    <Content Include="Images\iconbluesmile.jpg" />
     <Content Include="Scripts\json-serialize.js" />
     <Content Include="Scripts\json-serialize.min.js" />
   </ItemGroup>
