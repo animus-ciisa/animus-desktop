@@ -326,5 +326,59 @@ namespace Animus.DataAccess
             }
             return token;
         }
+
+        internal bool recoverPassword(string mailPassword, out string status, out string code)
+        {
+            status = string.Empty;
+            code = string.Empty;
+            Boolean responseMethod = false;
+            try
+            {
+                HttpWebRequest webRequest;
+                string urlEmail = ConfigurationManager.AppSettings["urlRecoverPass"];
+
+                string requestParams = "{ \"email\": \"" + mailPassword + "\"}";
+
+                webRequest = (HttpWebRequest)WebRequest.Create(urlEmail);
+
+                webRequest.Method = "POST";
+                webRequest.ContentType = "application/json";
+
+                byte[] byteArray = Encoding.UTF8.GetBytes(requestParams);
+                webRequest.ContentLength = byteArray.Length;
+                using (Stream requestStream = webRequest.GetRequestStream())
+                {
+                    requestStream.Write(byteArray, 0, byteArray.Length);
+                }
+
+                // Get the response.
+                using (WebResponse response = webRequest.GetResponse())
+                {
+                    using (Stream responseStream = response.GetResponseStream())
+                    {
+                        StreamReader rdr = new StreamReader(responseStream, Encoding.UTF8);
+                        var rawJson = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                        JObject json = JObject.Parse(rawJson);  //Turns your raw string into a key value lookup
+
+
+                        //CUANDO NO ES ARRAY
+                        //string msg = json["data"]["exists"].ToString();
+                        //if (msg.ToUpper().Trim() == "TRUE")
+                        //    responseMethod = true;
+
+                        status = json["status"].ToString();
+                        code = json["code"].ToString();
+                        responseMethod = true;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                responseMethod = false;
+            }
+
+            return responseMethod;
+        }
     }
 }

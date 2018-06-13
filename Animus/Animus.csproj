@@ -96,6 +96,7 @@
     </Compile>
     <Compile Include="BussinesRules\BrAnimusRest.cs" />
     <Compile Include="BussinesRules\BrHome.cs" />
+    <Compile Include="BussinesRules\BrSesion.cs" />
     <Compile Include="BussinesRules\BrTest.cs" />
     <Compile Include="CamerasAndMonitors.cs">
       <SubType>UserControl</SubType>
@@ -104,6 +105,7 @@
       <DependentUpon>CamerasAndMonitors.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\CoHome.cs" />
+    <Compile Include="Common\CoSesion.cs" />
     <Compile Include="Common\CoTest.cs" />
     <Compile Include="ControlCenter.cs">
       <SubType>Form</SubType>
@@ -119,6 +121,7 @@
     </Compile>
     <Compile Include="DataAccess\DaAnimusRest.cs" />
     <Compile Include="DataAccess\DaHome.cs" />
+    <Compile Include="DataAccess\DaSesion.cs" />
     <Compile Include="DataAccess\DaTest.cs" />
     <Compile Include="DataAccess\DaGenerateScript.cs" />
     <Compile Include="Login.cs">
@@ -127,17 +130,35 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoginAnimus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginAnimus.Designer.cs">
+      <DependentUpon>LoginAnimus.cs</DependentUpon>
+    </Compile>
     <Compile Include="msgCloseSession.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="msgCloseSession.Designer.cs">
       <DependentUpon>msgCloseSession.cs</DependentUpon>
     </Compile>
+    <Compile Include="msgNotification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="msgNotification.Designer.cs">
+      <DependentUpon>msgNotification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Password.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Password.Designer.cs">
       <DependentUpon>Password.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordAnimus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PasswordAnimus.Designer.cs">
+      <DependentUpon>PasswordAnimus.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -156,11 +177,20 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LoginAnimus.resx">
+      <DependentUpon>LoginAnimus.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="msgCloseSession.resx">
       <DependentUpon>msgCloseSession.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="msgNotification.resx">
+      <DependentUpon>msgNotification.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Password.resx">
       <DependentUpon>Password.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswordAnimus.resx">
+      <DependentUpon>PasswordAnimus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -192,6 +222,7 @@
     <Folder Include="DataBase\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\Application\002d.PNG" />
     <Content Include="Images\Application\alarm1.png" />
     <Content Include="Images\Application\cam2.png" />
     <Content Include="Images\Application\camera.png" />
@@ -202,6 +233,11 @@
     <Content Include="Images\Application\close.ico" />
     <Content Include="Images\Application\close1.png" />
     <Content Include="Images\Application\close_blue.ico" />
+    <Content Include="Images\Application\domo.jpg" />
+    <Content Include="Images\Application\domotic.png" />
+    <Content Include="Images\Application\email.png" />
+    <Content Include="Images\Application\excla.png" />
+    <Content Include="Images\Application\exclamation.jpg" />
     <Content Include="Images\Application\exclamations.ico" />
     <Content Include="Images\Application\folder.ico" />
     <Content Include="Images\Application\hamburger.png" />
@@ -213,7 +249,10 @@
     <Content Include="Images\Application\iconhapy.png" />
     <Content Include="Images\Application\icox.png" />
     <Content Include="Images\Application\llave.ico" />
+    <Content Include="Images\Application\lock.png" />
+    <Content Include="Images\Application\loginfoto.jpg" />
     <Content Include="Images\Application\mail.ico" />
+    <Content Include="Images\Application\mano.png" />
     <Content Include="Images\Application\men.png" />
     <Content Include="Images\Application\menu.png" />
     <Content Include="Images\Application\menu01.png" />
@@ -224,6 +263,8 @@
     <Content Include="Images\Application\phone.jpg" />
     <Content Include="Images\Application\phonewhite.jpg" />
     <Content Include="Images\Application\phone_trans.jpg" />
+    <Content Include="Images\Application\smart.jpg" />
+    <Content Include="Images\Application\smart1.png" />
     <Content Include="Images\Application\Update.ico" />
     <Content Include="Images\Application\upload.ico" />
     <Content Include="Images\Application\upload32.ico" />

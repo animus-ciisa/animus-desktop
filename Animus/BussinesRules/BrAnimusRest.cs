@@ -72,5 +72,21 @@ namespace Animus.BussinesRules
                 return "";
             }
         }
+
+        internal bool recoverPassword(string mailPassword, out string status, out string code)
+        {
+            status = string.Empty;
+            code = string.Empty;
+
+            try
+            {
+                DaAnimusRest da = new DaAnimusRest();
+                return da.recoverPassword(mailPassword, out status, out code);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

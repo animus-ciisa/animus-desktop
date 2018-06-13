@@ -12,6 +12,7 @@ namespace Animus
 {
     public partial class msgCloseSession : Form
     {
+        public static string nameFormSession = "";
         public msgCloseSession()
         {
             InitializeComponent();
@@ -22,11 +23,14 @@ namespace Animus
         }
         private void MyTimer_Tick(object sender, EventArgs e)
         {
-            Application.Exit();
+            nameFormSession = "CloseSesion";
+            //System.Windows.Forms.Application.Exit();
+            Environment.Exit(0);
         }
         private void msgCloseSession_Load(object sender, EventArgs e)
         {
-            bunifuFormFadeTransition1.ShowAsyc(this);
+            //bunifuFormFadeTransition1.ShowAsyc(this);
+            buninfuPop.ShowSync(this);
         }
     }
 }

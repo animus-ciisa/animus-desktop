@@ -3,19 +3,17 @@ using Animus.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Animus
 {
-    public partial class Password : MetroFramework.Forms.MetroForm
+    public partial class PasswordAnimus : Form
     {
         static string mailPassword = "";
         static string nickPassword = "";
@@ -23,24 +21,25 @@ namespace Animus
         static string nameArchiveHome = "";
         public static int idHome = 0;
         public static CoHome homeControl;
-        public Password()
+        public static string nameForm = "";
+        public static string msgForm = "";
+        public static int idSession = 0;
+        public static string correook = "";
+        public PasswordAnimus()
         {
             InitializeComponent();
+
         }
-
-        public Boolean ValidatePassword(String pass)
+        public Boolean ValidatePassword(String pass, out string msg)
         {
-
+            msg = string.Empty;
             Boolean resp = true;
             if (pass == "")
             {
-                errorProvider1.SetError(txtPassword, "El campo contraseña es obligatorio.");
+                msg = "El campo contraseña es obligatorio.";
                 resp = false;
             }
-            else
-            {
-                errorProvider1.SetError(txtPassword, "");
-            }
+
             return resp;
         }
         private void btnSaveHome_Click(object sender, EventArgs e)
@@ -48,8 +47,16 @@ namespace Animus
 
             try
             {
-                if (ValidatePassword(txtPassword.Text) == false)
+                string msg = string.Empty;
+                if (ValidatePassword(txtPassword.Text, out msg) == false)
+                {
+                    nameForm = "PasswordAnimus";
+                    msgForm = msg;
+
+                    msgNotification ms = new msgNotification();
+                    ms.ShowDialog();
                     return;
+                }
 
                 if (btnSaveHome.Text.ToUpper().Trim().Contains("HOGAR"))
                 { // INSERT HOGAR.
@@ -73,7 +80,15 @@ namespace Animus
 
                         if (status.ToUpper().Trim() != "OK" || code != "201")
                         {
-                            MetroFramework.MetroMessageBox.Show(this, "No existe conexión con el servidor, vuelva a reintentarlo.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //   MetroFramework.MetroMessageBox.Show(this, "No existe conexión con el servidor, vuelva a reintentarlo.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                            nameForm = "PasswordAnimus";
+                            msgForm = "No existe conexión con el servidor, vuelva a reintentarlo.";
+
+                            msgNotification ms = new msgNotification();
+                            ms.ShowDialog();
+
                             return;
                         }
 
@@ -100,9 +115,20 @@ namespace Animus
                                 //DashBoardMenu dashBoard = new DashBoardMenu();
                                 //dashBoard.ShowDialog();
 
-                                this.Close();
-                                ControlCenter c = new ControlCenter();
-                                c.ShowDialog();
+                                //INSERTO EN BD
+                                CoSesion coSession = new CoSesion();
+                                coSession.start = DateTime.Now;
+                                coSession.token = coHome.tookenHome;
+
+                                idSession = new BrSesion().insert(coSession);
+
+                                if (idSession != 0)
+                                {
+                                    // this.Close();
+                                    this.Hide();
+                                    ControlCenter c = new ControlCenter();
+                                    c.ShowDialog();
+                                }
                             }
 
                         }
@@ -123,14 +149,27 @@ namespace Animus
 
                         if (status.ToUpper().Trim() != "OK" || code == "402")
                         {
-                            MetroFramework.MetroMessageBox.Show(this, "Usuario o Password Incorrecto.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //  MetroFramework.MetroMessageBox.Show(this, "Usuario o Password Incorrecto.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            nameForm = "PasswordAnimus";
+                            msgForm = "Usuario o Password Incorrecto.";
+
+                            msgNotification ms = new msgNotification();
+                            ms.ShowDialog();
                             return;
                         }
 
                         if (status.ToUpper().Trim() != "OK" || code != "201")
                         {
-                            MetroFramework.MetroMessageBox.Show(this, "No existe conexión con el servidor, vuelva a reintentarlo.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            // MetroFramework.MetroMessageBox.Show(this, "No existe conexión con el servidor, vuelva a reintentarlo.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            nameForm = "PasswordAnimus";
+                            msgForm = "No existe conexión con el servidor, vuelva a reintentarlo.";
+
+                            msgNotification ms = new msgNotification();
+                            ms.ShowDialog();
                             return;
+
                         }
 
                         if (coHome.idHome != 0)
@@ -140,13 +179,49 @@ namespace Animus
                             //DashBoardMenu d = new DashBoardMenu();
                             //d.ShowDialog();
                             homeControl = coHome;
-                            this.Hide();
-                            ControlCenter c = new ControlCenter();
-                            c.ShowDialog();
+
+
+                            //aqui inserto cuando inicio
+                            BrAnimusRest brRest = new BrAnimusRest();
+                            string status_ = string.Empty, code_ = string.Empty;
+
+                            //INSERTO EN BD
+                            CoSesion coSession = new CoSesion();
+                            coSession.start = DateTime.Now;
+                            coSession.token = coHome.tookenHome;
+
+
+                            idSession = new BrSesion().insert(coSession);
+
+
+
+                            //string tookenResponse = brRest.renewToken(tooken, out status_, out code_);
+                            //if (tookenResponse != "")
+                            //{
+
+                            //    //INSERTO EN BD Y AQUI VOY RENOVANDO AGREGAR LLAMADA BD
+                            //    PasswordAnimus.homeControl.tookenHome = tookenResponse;
+                            //}
+
+
+                            if (idSession != 0)
+                            {
+                                this.Hide();
+                                //this.Close();
+                                ControlCenter c = new ControlCenter();
+                                c.ShowDialog();
+
+                            }
                         }
                         else
                         {
-                            MetroFramework.MetroMessageBox.Show(this, "No se pudo rescatar los datos del usuario, favor reintentar.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            // MetroFramework.MetroMessageBox.Show(this, "No se pudo rescatar los datos del usuario, favor reintentar.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            nameForm = "PasswordAnimus";
+                            msgForm = "No se pudo rescatar los datos del usuario, favor reintentar.";
+
+                            msgNotification ms = new msgNotification();
+                            ms.ShowDialog();
                             return;
                         }
                     }
@@ -225,16 +300,16 @@ namespace Animus
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Login login = new Login();
+            // this.Close();
+            LoginAnimus login = new LoginAnimus();
             login.ShowDialog();
-
-
         }
 
-        private void Password_Load(object sender, EventArgs e)
+        private void PasswordAnimus_Load(object sender, EventArgs e)
         {
-            mailPassword = Login.mail;
-            nickPassword = Login.nick;
+            mailPassword = LoginAnimus.mail;
+            nickPassword = LoginAnimus.nick;
+
 
             int idHome = Program.idHome;
             if (idHome != 0)
@@ -248,10 +323,10 @@ namespace Animus
                     btnSaveHome.Text = "Iniciar Sessión";
                     this.btnSaveHome.Location = new System.Drawing.Point(135, 300);
                     this.btnVolver.Visible = false;
-                    metroLabel1.Visible = false;
-                    this.linkPass.Location = new System.Drawing.Point(138, 356);
+                    bunifuCustomLabel2.Visible = false;
+                    this.linkPass.Location = new System.Drawing.Point(146, 356);
                     this.linkPass.Visible = true;
-                    btnSaveHome.Enabled = false;
+                    btnSaveHome.Enabled = true;
                     mailPassword = dtHome.Rows[0]["mail"].ToString();
 
                 }
@@ -259,8 +334,8 @@ namespace Animus
                 {
                     btnSaveHome.Text = "Registrar Hogar";
                     lblHogar.Visible = false;
-                    this.btnSaveHome.Location = new System.Drawing.Point(212, 337);
-                    metroLabel1.Visible = true;
+                    this.btnSaveHome.Location = new System.Drawing.Point(245, 334);
+                    bunifuCustomLabel2.Visible = true;
                     this.linkPass.Visible = false;
                     btnSaveHome.Enabled = true;
 
@@ -270,8 +345,8 @@ namespace Animus
             {
                 btnSaveHome.Text = "Registrar Hogar";
                 lblHogar.Visible = false;
-                this.btnSaveHome.Location = new System.Drawing.Point(212, 337);
-                metroLabel1.Visible = true;
+                this.btnSaveHome.Location = new System.Drawing.Point(245, 334);
+                bunifuCustomLabel2.Visible = true;
                 this.linkPass.Visible = false;
                 btnSaveHome.Enabled = true;
 
@@ -334,7 +409,6 @@ namespace Animus
             #endregion
         }
 
-
         private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (txtPassword.Text.Trim() != "")
@@ -342,11 +416,71 @@ namespace Animus
             else
                 btnSaveHome.Enabled = false;
         }
-
-
         //METODO OLVIDE MI CONTRASEÑA
-        private void linkPass_Click(object sender, EventArgs e)
+        //private void linkPass_Click(object sender, EventArgs e)
+        //{
+        //    txtPassword.isPassword = true;
+        //    if (mailPassword != "" && mailPassword.Contains("@"))
+        //    {
+        //        string status = string.Empty, code = string.Empty;
+        //        Boolean boolPass = new BrAnimusRest().recoverPassword(mailPassword, out  status, out  code);
+        //        if (boolPass == true)
+        //        {
+        //            //mensaje ok
+        //            if (status.ToUpper().Trim() == "OK")
+        //            {
+        //                string msg = "La contraseña fue enviada a su correo electrónico.";
+        //                nameForm = "LoginAnimus";
+        //                correook = "OK";
+        //                msgForm = msg;
+
+        //                msgNotification ms = new msgNotification();
+        //                ms.ShowDialog();
+        //                return;
+        //            }
+        //            else
+        //            {
+        //                string msg = "No se pudo enviar la contraseña al correo.";
+        //                nameForm = "LoginAnimus";
+
+        //                msgForm = msg;
+
+        //                msgNotification ms = new msgNotification();
+        //                ms.ShowDialog();
+        //                return;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            //mensaje no se pudo
+        //            nameForm = "LoginAnimus";
+        //            msgForm = "No existe conexión con el servidor, vuelva a reintentarlo.";
+        //            msgNotification ms = new msgNotification();
+        //            ms.ShowDialog();
+        //            return;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        nameForm = "LoginAnimus";
+        //        msgForm = "El campo contraseña es obligatorio.";
+        //        msgNotification ms = new msgNotification();
+        //        ms.ShowDialog();
+        //        return;
+        //    }
+
+        //}
+
+        private void btnCerrar_Click(object sender, EventArgs e)
         {
+            Environment.Exit(0);
+        }
+
+
+
+        private void bunifuCustomLabel3_Click(object sender, EventArgs e)
+        {
+            txtPassword.isPassword = true;
             if (mailPassword != "" && mailPassword.Contains("@"))
             {
                 string status = string.Empty, code = string.Empty;
@@ -354,12 +488,49 @@ namespace Animus
                 if (boolPass == true)
                 {
                     //mensaje ok
+                    if (status.ToUpper().Trim() == "OK")
+                    {
+                        string msg = "La contraseña fue enviada a su correo electrónico.";
+                        nameForm = "LoginAnimus";
+                        correook = "OK";
+                        msgForm = msg;
+
+                        msgNotification ms = new msgNotification();
+                        ms.ShowDialog();
+                        return;
+                    }
+                    else
+                    {
+                        string msg = "No se pudo enviar la contraseña al correo.";
+                        nameForm = "LoginAnimus";
+
+                        msgForm = msg;
+
+                        msgNotification ms = new msgNotification();
+                        ms.ShowDialog();
+                        return;
+                    }
                 }
                 else
                 {
                     //mensaje no se pudo
+                    nameForm = "LoginAnimus";
+                    msgForm = "No existe conexión con el servidor, vuelva a reintentarlo.";
+                    msgNotification ms = new msgNotification();
+                    ms.ShowDialog();
+                    return;
                 }
             }
+            else
+            {
+                nameForm = "LoginAnimus";
+                msgForm = "El campo contraseña es obligatorio.";
+                msgNotification ms = new msgNotification();
+                ms.ShowDialog();
+                return;
+            }
         }
+
+
     }
 }

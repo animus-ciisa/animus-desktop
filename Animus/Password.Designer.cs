@@ -114,7 +114,6 @@
             this.txtPassword.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtPassword.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
-
             // 
             // pictureBox1
             // 
@@ -145,6 +144,7 @@
             this.linkPass.Text = "olvidé mi contraseña";
             this.linkPass.UseSelectable = true;
             this.linkPass.Visible = false;
+            this.linkPass.Click += new System.EventHandler(this.linkPass_Click);
             // 
             // Password
             // 

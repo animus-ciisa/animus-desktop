@@ -43,8 +43,11 @@ C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.CamerasAndMonitors.resou
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.ControlCenter.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.DashBoardMenu.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.Login.resources
+C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.LoginAnimus.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.msgCloseSession.resources
+C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.msgNotification.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.Password.resources
+C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.PasswordAnimus.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.Properties.Resources.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.csproj.GenerateResource.Cache
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.exe

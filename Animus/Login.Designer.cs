@@ -66,6 +66,7 @@
             this.btnCuenta.Text = "Ya tengo una cuenta";
             this.btnCuenta.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCuenta.UseSelectable = true;
+
             // 
             // btnRegistro
             // 

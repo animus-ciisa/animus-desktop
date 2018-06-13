@@ -47,11 +47,11 @@
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.logoAnimator = new BunifuAnimatorNS.BunifuTransition(this.components);
-            this.camerasAndMonitors1 = new Animus.CamerasAndMonitors();
-            this.alarms1 = new Animus.Alarms();
-            this.camerasAndMonitors2 = new Animus.CamerasAndMonitors();
             this.panelAnimator = new BunifuAnimatorNS.BunifuTransition(this.components);
             this.buninfuMenu = new BunifuAnimatorNS.BunifuTransition(this.components);
+            this.camerasAndMonitors2 = new Animus.CamerasAndMonitors();
+            this.camerasAndMonitors1 = new Animus.CamerasAndMonitors();
+            this.alarms1 = new Animus.Alarms();
             this.panelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMenu)).BeginInit();
             this.panelHeader.SuspendLayout();
@@ -251,7 +251,7 @@
             // bunifuFlatButton1
             // 
             this.bunifuFlatButton1.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.bunifuFlatButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.bunifuFlatButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
             this.bunifuFlatButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bunifuFlatButton1.BorderRadius = 0;
             this.bunifuFlatButton1.ButtonText = "           Alarmas";
@@ -373,39 +373,6 @@
             animation3.TransparencyCoeff = 0F;
             this.logoAnimator.DefaultAnimation = animation3;
             // 
-            // camerasAndMonitors1
-            // 
-            this.camerasAndMonitors1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.buninfuMenu.SetDecoration(this.camerasAndMonitors1, BunifuAnimatorNS.DecorationType.None);
-            this.panelAnimator.SetDecoration(this.camerasAndMonitors1, BunifuAnimatorNS.DecorationType.None);
-            this.logoAnimator.SetDecoration(this.camerasAndMonitors1, BunifuAnimatorNS.DecorationType.None);
-            this.camerasAndMonitors1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.camerasAndMonitors1.Location = new System.Drawing.Point(265, 52);
-            this.camerasAndMonitors1.Name = "camerasAndMonitors1";
-            this.camerasAndMonitors1.Size = new System.Drawing.Size(585, 498);
-            this.camerasAndMonitors1.TabIndex = 3;
-            // 
-            // alarms1
-            // 
-            this.buninfuMenu.SetDecoration(this.alarms1, BunifuAnimatorNS.DecorationType.None);
-            this.panelAnimator.SetDecoration(this.alarms1, BunifuAnimatorNS.DecorationType.None);
-            this.logoAnimator.SetDecoration(this.alarms1, BunifuAnimatorNS.DecorationType.None);
-            this.alarms1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alarms1.Location = new System.Drawing.Point(265, 52);
-            this.alarms1.Name = "alarms1";
-            this.alarms1.Size = new System.Drawing.Size(585, 498);
-            this.alarms1.TabIndex = 2;
-            // 
-            // camerasAndMonitors2
-            // 
-            this.buninfuMenu.SetDecoration(this.camerasAndMonitors2, BunifuAnimatorNS.DecorationType.None);
-            this.panelAnimator.SetDecoration(this.camerasAndMonitors2, BunifuAnimatorNS.DecorationType.None);
-            this.logoAnimator.SetDecoration(this.camerasAndMonitors2, BunifuAnimatorNS.DecorationType.None);
-            this.camerasAndMonitors2.Location = new System.Drawing.Point(265, 52);
-            this.camerasAndMonitors2.Name = "camerasAndMonitors2";
-            this.camerasAndMonitors2.Size = new System.Drawing.Size(582, 495);
-            this.camerasAndMonitors2.TabIndex = 4;
-            // 
             // panelAnimator
             // 
             this.panelAnimator.AnimationType = BunifuAnimatorNS.AnimationType.Mosaic;
@@ -426,7 +393,6 @@
             animation2.TimeCoeff = 0F;
             animation2.TransparencyCoeff = 0F;
             this.panelAnimator.DefaultAnimation = animation2;
-            this.panelAnimator.MaxAnimationTime = 3000;
             // 
             // buninfuMenu
             // 
@@ -448,7 +414,43 @@
             animation1.TimeCoeff = 0F;
             animation1.TransparencyCoeff = 0F;
             this.buninfuMenu.DefaultAnimation = animation1;
-            this.buninfuMenu.MaxAnimationTime = 2500;
+            this.buninfuMenu.MaxAnimationTime = 500;
+            // 
+            // camerasAndMonitors2
+            // 
+            this.camerasAndMonitors2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(46)))), ((int)(((byte)(59)))));
+            this.buninfuMenu.SetDecoration(this.camerasAndMonitors2, BunifuAnimatorNS.DecorationType.None);
+            this.panelAnimator.SetDecoration(this.camerasAndMonitors2, BunifuAnimatorNS.DecorationType.None);
+            this.logoAnimator.SetDecoration(this.camerasAndMonitors2, BunifuAnimatorNS.DecorationType.None);
+            this.camerasAndMonitors2.Location = new System.Drawing.Point(265, 52);
+            this.camerasAndMonitors2.Name = "camerasAndMonitors2";
+            this.camerasAndMonitors2.Size = new System.Drawing.Size(582, 495);
+            this.camerasAndMonitors2.TabIndex = 4;
+            // 
+            // camerasAndMonitors1
+            // 
+            this.camerasAndMonitors1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(46)))), ((int)(((byte)(59)))));
+            this.camerasAndMonitors1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.buninfuMenu.SetDecoration(this.camerasAndMonitors1, BunifuAnimatorNS.DecorationType.None);
+            this.panelAnimator.SetDecoration(this.camerasAndMonitors1, BunifuAnimatorNS.DecorationType.None);
+            this.logoAnimator.SetDecoration(this.camerasAndMonitors1, BunifuAnimatorNS.DecorationType.None);
+            this.camerasAndMonitors1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.camerasAndMonitors1.Location = new System.Drawing.Point(265, 52);
+            this.camerasAndMonitors1.Name = "camerasAndMonitors1";
+            this.camerasAndMonitors1.Size = new System.Drawing.Size(585, 498);
+            this.camerasAndMonitors1.TabIndex = 3;
+            // 
+            // alarms1
+            // 
+            this.alarms1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(46)))), ((int)(((byte)(59)))));
+            this.buninfuMenu.SetDecoration(this.alarms1, BunifuAnimatorNS.DecorationType.None);
+            this.panelAnimator.SetDecoration(this.alarms1, BunifuAnimatorNS.DecorationType.None);
+            this.logoAnimator.SetDecoration(this.alarms1, BunifuAnimatorNS.DecorationType.None);
+            this.alarms1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.alarms1.Location = new System.Drawing.Point(265, 52);
+            this.alarms1.Name = "alarms1";
+            this.alarms1.Size = new System.Drawing.Size(585, 498);
+            this.alarms1.TabIndex = 2;
             // 
             // ControlCenter
             // 

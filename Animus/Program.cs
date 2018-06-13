@@ -38,16 +38,22 @@ namespace Animus
                         }
                     }
                     if (status == "ok")
-                        Application.Run(new Password());
+                    {
+                        Application.Run(new PasswordAnimus());
+
+                    }
                     else
-                        Application.Run(new Login());
+                    {
+                        Application.Run(new LoginAnimus());
+                    }
                 }
             }
             else
             {
 
-                Application.Run(new Login());
+                Application.Run(new LoginAnimus());
             }
+
 
         }
     }

@@ -118,6 +118,20 @@ sqlite_conn.Close();*/
                                 tookenhome varchar(1000) NULL,imagehome varchar(100) NULL)";
                 sqliteCmd.ExecuteNonQuery();
 
+
+
+                sqliteCmd.CommandText = "DROP TABLE IF EXISTS Sesion";
+                sqliteCmd.ExecuteNonQuery();
+
+
+                sqliteCmd.CommandText = @"CREATE TABLE Sesion(id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                                start datetime NULL, end datetime NULL,
+                                token varchar(1000) NULL)";
+                sqliteCmd.ExecuteNonQuery();
+
+
+
+
                 sqliteTransaction.Commit();
 
             }

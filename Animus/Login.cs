@@ -38,8 +38,9 @@ namespace Animus
             path = path + "\\" + "usr.txt";
             if (!File.Exists(path))
             {
-                File.Create(path);
+                File.Create(path).Close();
             }
+
 
             //Generar_Test();
         }
@@ -138,6 +139,8 @@ namespace Animus
             if (status.ToUpper().Trim() != "OK" || code != "200")
             {
                 MetroFramework.MetroMessageBox.Show(this, "No existe conexión con el servidor, vuelva a reintentarlo.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
                 return;
             }
 
@@ -392,30 +395,39 @@ namespace Animus
             string path = System.IO.Directory.GetCurrentDirectory().Replace("\\bin\\Debug", "");
             path = path + "\\" + "usr.txt";
 
+
+
             if (File.Exists(path))
             {
-                using (StreamReader sr = File.OpenText(path))
+
+                byte[] archivo = System.IO.File.ReadAllBytes(path);
+                int tamaño = archivo.Length;
+                if (tamaño > 0)
                 {
-                    string s = "";
-                    while ((s = sr.ReadLine()) != null)
+                    using (StreamReader sr = File.OpenText(path))
                     {
-                        if (s.Contains(";"))
+                        string s = "";
+                        while ((s = sr.ReadLine()) != null)
                         {
-                            string id = s.Split(';')[0].ToString();
-                            string correo = s.Split(';')[1].ToString();
-                            string nick = s.Split(';')[2].ToString();
+                            if (s.Contains(";"))
+                            {
+                                string id = s.Split(';')[0].ToString();
+                                string correo = s.Split(';')[1].ToString();
+                                string nick = s.Split(';')[2].ToString();
 
 
 
-                            Password pass = new Password();
-                            pass.ShowDialog();
+                                Password pass = new Password();
+                                pass.ShowDialog();
 
-                            this.Close();
+                                this.Close();
+                            }
                         }
                     }
                 }
             }
         }
+
 
 
     }

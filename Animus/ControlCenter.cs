@@ -34,17 +34,38 @@ namespace Animus
             //this.Close();
 
             //  consume tooken 
-            CoHome homeCo = Password.homeControl; // pasar objeto entero con tooken incluido
-            string tooken = homeCo.tookenHome;
-            BrAnimusRest brRest = new BrAnimusRest();
-            string status = string.Empty, code = string.Empty;
-            string tookenResponse = brRest.renewToken(tooken, out status, out code);
-            if (tookenResponse != "")
-            {
 
-                //INSERTO EN BD Y AQUI VOY RENOVANDO
-                Password.homeControl.tookenHome = tookenResponse;
+            //OBTENER TOOKEN Y ID ULTIMO DE SESSION.
+            string token = string.Empty;
+            int id = 0;
+            new BrSesion().getData(out token, out id);//token y id session
+            if (id != 0 && token != "")
+            {
+                CoSesion coSession = new CoSesion();
+                coSession.id = id;
+                coSession.token = token;
+                string status = string.Empty, code = string.Empty;
+                BrAnimusRest brRest = new BrAnimusRest();
+                string tookenResponse = brRest.renewToken(token, out status, out code);
+                if (status.ToUpper() == "OK")
+                {
+                    coSession.token = token; // TOKEN NUEVO
+                    new BrSesion().updateUltimetoken(coSession);
+                }
+
             }
+
+            //CoHome homeCo = PasswordAnimus.homeControl; // pasar objeto entero con tooken incluido
+            //string tooken = homeCo.tookenHome;
+            //BrAnimusRest brRest = new BrAnimusRest();
+            //string status = string.Empty, code = string.Empty;
+            //string tookenResponse = brRest.renewToken(tooken, out status, out code);
+            //if (tookenResponse != "")
+            //{
+
+            //    //INSERTO EN BD Y AQUI VOY RENOVANDO AGREGAR LLAMADA BD
+            //    PasswordAnimus.homeControl.tookenHome = tookenResponse;
+            //}
 
         }
 
@@ -52,8 +73,19 @@ namespace Animus
         {
             msgCloseSession msg = new msgCloseSession();
             msg.ShowDialog();
-            
+
+            if (PasswordAnimus.idSession != 0)
+            {
+                //finaliza session campo fin.
+                CoSesion coSession = new CoSesion();
+                coSession.end = DateTime.Now;
+                coSession.id = PasswordAnimus.idSession;
+                new BrSesion().update(coSession);
+
+
+            }
             //this.Close();
+            this.Hide();
         }
 
         private void ControlCenter_Load(object sender, EventArgs e)
