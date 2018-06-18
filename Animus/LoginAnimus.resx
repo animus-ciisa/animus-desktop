@@ -120,6 +120,27 @@
   <metadata name="bunifuElipse1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnCheckInternet.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAbAAAAA3CAYAAABtjB/+AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAANASURBVHhe7dzRa5V1HMfx/g5ttTFoctTpnJ6NJZLFKCQI
+        GsvpKRUGEV5ULCJMKIicbEeobqKCouhCil1ENwoWGGw3dTEqxPBiQbCLFFFkF0Mvvvl7zsNpa8s75/OD
+        1wveMJ6zc24/nOf5bQ9t6twSkiTllgGTJGWZAZMkZZkBkyRlmQGTJGWZAZMkZdm9B6y7Fl3Dg9E/MRKD
+        7xyK+lQjepsHJUm6L6WdKfbmrdHoemYoNvfU1t+nu/3vgHXu2xOD0y/F8bOn4tzlufjlr0uxePNqAMD9
+        knYm7c2PV36OiZkzMXTmaDz27L51d2rNgKW12/3689H44u24tnSj/EgA2Hi3lpfitW+non5yLB6ubVu1
+        V6sGLI3X0OkjMTP/Q/lWAHjwZhfmY39zPDq2964/YOmbl/ECoIrSrcX0fGzNgKVnXum2IQBU1eT5z2Pr
+        oeEVA9ZdKw5seOYFQJUt37kdwx+9Eh19O1sDlo4qptMeAFB1n87OxNZjT7cGLJ23T0cWAaDq/vj7zxh4
+        v9EasIHJRixcXyxfAoDqSrcR+5pjrQHrnz5cnLUHgByk/9pRDFj6AQByYcAAyJIBAyBLBgyALBkwALJk
+        wADIkgEDIEsGDIAsGTAAsmTAAMiSAQMgSwYMgCwZMACyZMAAyJIBAyBLBgyALBkwALJkwADIkgEDIEsG
+        DIAsGTAAsmTAAMhSe8D6mmOxfOd2eRkAqq09YPWpRizevFpeBoBq+3fATo7F7MJ8eRkAqmvh+mIMTDZa
+        A9bzwpMxdeHL8iUAqK7vfr8Yu159rjVgHdt744kPxj0HA6Dyxr9+Nzr311sDltpx7EA0L3xVvgwA1fP9
+        bxej/uZosVvtAdvUXYu9770Yvy5eKX8NAKrj2tKN2Dt9NDb31P4zYHfr6NsZT334cvGADACqIo3XyCcT
+        8ejju9ubtWrAUo8M7Iqh00fi45++Kd8GAA/O+UtzxTevleOVWjNgRd212DF+IEY/e6M47ZGWDwA2yq3l
+        pTh3eS6Onz0VgycOtm8brmz9AStLa5eOKu6ZbhR/NCZJ0kbUP304+idGomt4cN19St1zwCRJqmoGTJKU
+        ZQZMkpRlBkySlGUGTJKUYVviH8+nFOH0y6ELAAAAAElFTkSuQmCC
+</value>
+  </data>
   <metadata name="bunifuTransition1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>389, 17</value>
   </metadata>
@@ -158,7 +179,6 @@
         d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAAAAAAAAL
 </value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureLogin.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEASABIAAD/7gAOQWRvYmUAZAAAAAAB/+EWzEV4aWYAAE1NACoAAAAIAAwBAAAD
@@ -11379,7 +11399,7 @@
         X7cmoyZH3/Lfit7teK/wvvaD5YfuqeCpZx/TP85MF35S+FT32fZz75fILy9nVn3FfS3/pvet87vf9yei
         dJGIx+Qzf1gBFJJwYiIA72oBoEQDQO1H/IPEnCf+28tDC67+v/Gcb/4RiHNpQk6zVsi9C4AWJLVdEG0k
         Zy1RmAuALSzE+XdkJVqYz2mREWeJ+SQSvVcGANcJwDe+SDRzQCT6dhRp9iEAXZlzXnw2sMgfShPO9PPK
-        fQOdJhv/7YgB+A/f8APjCtBQKgAAAAlwSFlzAAALEwAACxMBAJqcGAAADE9JREFUeF7tmUFyIzkSBOcB
+        fQOdJhv/7YgB+A/f8APjCtBQKgAAAAlwSFlzAAALEAAACxABrSO9dQAADE9JREFUeF7tmUFyIzkSBOcB
         c9rPz4Pmvl/qzdoWTWopKJGsQgSAdDdzaylEVgGJTFz6r1+/fiFiU2WIiD2UISL2UIaI2EMZImIPZYiI
         PZQhIvZQhojYQxkiYg9liIg9lCEi9lCGiNhDGSJiD2WIiD2UISL2UIaI2EMZImIPZYiIPZQhIvZQhojY
         QxkiYg9liIg9lCEi9lCGiNhDGSJiD2WIiD2UISL2UIaI2EMZImIPZYiIPZQhIvZQhojYQxk6vcffxT/F
@@ -11484,7 +11504,7 @@
         X7cmoyZH3/Lfit7teK/wvvaD5YfuqeCpZx/TP85MF35S+FT32fZz75fILy9nVn3FfS3/pvet87vf9yei
         dJGIx+Qzf1gBFJJwYiIA72oBoEQDQO1H/IPEnCf+28tDC67+v/Gcb/4RiHNpQk6zVsi9C4AWJLVdEG0k
         Zy1RmAuALSzE+XdkJVqYz2mREWeJ+SQSvVcGANcJwDe+SDRzQCT6dhRp9iEAXZlzXnw2sMgfShPO9PPK
-        fQOdJhv/7YgB+A/f8APjCtBQKgAAAAlwSFlzAAALEwAACxMBAJqcGAAADE9JREFUeF7tmUFyIzkSBOcB
+        fQOdJhv/7YgB+A/f8APjCtBQKgAAAAlwSFlzAAALEAAACxABrSO9dQAADE9JREFUeF7tmUFyIzkSBOcB
         c9rPz4Pmvl/qzdoWTWopKJGsQgSAdDdzaylEVgGJTFz6r1+/fiFiU2WIiD2UISL2UIaI2EMZImIPZYiI
         PZQhIvZQhojYQxkiYg9liIg9lCEi9lCGiNhDGSJiD2WIiD2UISL2UIaI2EMZImIPZYiIPZQhIvZQhojY
         QxkiYg9liIg9lCEi9lCGiNhDGSJiD2WIiD2UISL2UIaI2EMZImIPZYiIPZQhIvZQhojYQxk6vcffxT/F

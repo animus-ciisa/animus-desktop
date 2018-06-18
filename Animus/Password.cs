@@ -81,7 +81,7 @@ namespace Animus
                         {
                             string response = string.Empty;
                             //insertamos home en base de datos
-                            new BrHome().InsertHome(coHome, out response);
+                            //new BrHome().InsertHome(coHome, out response);
 
                             //GUARDA ARCHIVO CON HOME,ID,MAIL,PASS
                             if (File.Exists(path) && response == "OK")

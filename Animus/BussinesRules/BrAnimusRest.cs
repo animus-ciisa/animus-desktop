@@ -27,6 +27,7 @@ namespace Animus.BussinesRules
             }
             return resp;
         }
+
         internal void validateAuth(out string status, out string code, CoHome coHome)
         {
             code = string.Empty;

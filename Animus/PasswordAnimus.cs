@@ -25,6 +25,9 @@ namespace Animus
         public static string msgForm = "";
         public static int idSession = 0;
         public static string correook = "";
+
+        BrHome homeBussinessRules = new BrHome();
+
         public PasswordAnimus()
         {
             InitializeComponent();
@@ -44,7 +47,6 @@ namespace Animus
         }
         private void btnSaveHome_Click(object sender, EventArgs e)
         {
-
             try
             {
                 string msg = string.Empty;
@@ -59,78 +61,39 @@ namespace Animus
                 }
 
                 if (btnSaveHome.Text.ToUpper().Trim().Contains("HOGAR"))
-                { // INSERT HOGAR.
-                    //devuelde id select last_insert_rowid();
+                {
                     if (mailPassword != "" && nickPassword != "" && txtPassword.Text != "")
                     {
                         CoHome coHome = new CoHome();
                         coHome.nickHome = nickPassword;
                         coHome.password = txtPassword.Text;
                         coHome.mail = mailPassword;
-                        string status = string.Empty;
-                        string code = string.Empty;
-
-                        string fullimagepath = Path.Combine(Application.StartupPath);
-
-                        string path = System.IO.Directory.GetCurrentDirectory().Replace("\\bin\\Debug", "");
-                        path = path + "\\" + "usr.txt";
-
-                        //Consumir post al insert casa
-                        coHome = new BrAnimusRest().registerHome(out status, out code, coHome);
-
-                        if (status.ToUpper().Trim() != "OK" || code != "201")
+                        
+                        Boolean internetStatus = true;
+                        string sessionToken = string.Empty;
+                        coHome = this.homeBussinessRules.Save(coHome, out sessionToken, out internetStatus);
+                        if (!internetStatus)
                         {
-                            //   MetroFramework.MetroMessageBox.Show(this, "No existe conexión con el servidor, vuelva a reintentarlo.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
                             nameForm = "PasswordAnimus";
                             msgForm = "No existe conexión con el servidor, vuelva a reintentarlo.";
-
                             msgNotification ms = new msgNotification();
                             ms.ShowDialog();
-
                             return;
                         }
-
-                        if (coHome.idHome != 0)
+                        if (coHome != null && coHome.idHome != 0)
                         {
-                            string response = string.Empty;
-                            //insertamos home en base de datos
-                            new BrHome().InsertHome(coHome, out response);
-
-                            //GUARDA ARCHIVO CON HOME,ID,MAIL,PASS
-                            if (File.Exists(path) && response == "OK")
+                            idHome = coHome.idHome;
+                            homeControl = coHome;
+                            CoSesion coSession = new CoSesion();
+                            coSession.start = DateTime.Now;
+                            coSession.token = sessionToken;
+                            idSession = new BrSesion().insert(coSession);
+                            if (idSession != 0)
                             {
-
-                                //remove text archive
-                                //File.Delete(path);
-                                //create archive
-                                idHome = coHome.idHome;
-                                string createText = coHome.idHome + ";" + coHome.mail + ";" + coHome.nickHome;
-                                File.WriteAllText(path, createText);
-
-                                homeControl = coHome;
-
-                                //this.Close();
-                                //DashBoardMenu dashBoard = new DashBoardMenu();
-                                //dashBoard.ShowDialog();
-
-                                //INSERTO EN BD
-                                CoSesion coSession = new CoSesion();
-                                coSession.start = DateTime.Now;
-                                coSession.token = coHome.tookenHome;
-
-                                idSession = new BrSesion().insert(coSession);
-
-                                if (idSession != 0)
-                                {
-                                    // this.Close();
-                                    this.Hide();
-                                    ControlCenter c = new ControlCenter();
-                                    c.ShowDialog();
-                                }
+                                this.Hide();
+                                ControlCenter c = new ControlCenter();
+                                c.ShowDialog();
                             }
-
                         }
                     }
                 }
@@ -141,155 +104,41 @@ namespace Animus
                         CoHome coHome = new CoHome();
                         coHome.mail = mailPassword;
                         coHome.password = txtPassword.Text;
-                        string status = string.Empty;
-                        string code = string.Empty;
-
-                        //consume validate password
-                        new BrAnimusRest().validateAuth(out status, out code, coHome);
-
-                        if (status.ToUpper().Trim() != "OK" || code == "402")
+                        Boolean internetStatus = true;
+                        string sessionToken = string.Empty;
+                        coHome = this.homeBussinessRules.Authenticate(coHome, out sessionToken, out internetStatus);
+                        if (!internetStatus)
                         {
-                            //  MetroFramework.MetroMessageBox.Show(this, "Usuario o Password Incorrecto.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            nameForm = "PasswordAnimus";
-                            msgForm = "Usuario o Password Incorrecto.";
-
-                            msgNotification ms = new msgNotification();
-                            ms.ShowDialog();
-                            return;
-                        }
-
-                        if (status.ToUpper().Trim() != "OK" || code != "201")
-                        {
-                            // MetroFramework.MetroMessageBox.Show(this, "No existe conexión con el servidor, vuelva a reintentarlo.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                             nameForm = "PasswordAnimus";
                             msgForm = "No existe conexión con el servidor, vuelva a reintentarlo.";
-
                             msgNotification ms = new msgNotification();
                             ms.ShowDialog();
                             return;
-
                         }
-
-                        if (coHome.idHome != 0)
+                        if (coHome != null && coHome.idHome != 0)
                         {
-                            // mando a llamar al dashboard
-                            //this.Hide();
-                            //DashBoardMenu d = new DashBoardMenu();
-                            //d.ShowDialog();
                             homeControl = coHome;
-
-
-                            //aqui inserto cuando inicio
-                            BrAnimusRest brRest = new BrAnimusRest();
-                            string status_ = string.Empty, code_ = string.Empty;
-
-                            //INSERTO EN BD
                             CoSesion coSession = new CoSesion();
                             coSession.start = DateTime.Now;
-                            coSession.token = coHome.tookenHome;
-
-
+                            coSession.token = sessionToken;
                             idSession = new BrSesion().insert(coSession);
-
-
-
-                            //string tookenResponse = brRest.renewToken(tooken, out status_, out code_);
-                            //if (tookenResponse != "")
-                            //{
-
-                            //    //INSERTO EN BD Y AQUI VOY RENOVANDO AGREGAR LLAMADA BD
-                            //    PasswordAnimus.homeControl.tookenHome = tookenResponse;
-                            //}
-
-
                             if (idSession != 0)
                             {
                                 this.Hide();
-                                //this.Close();
                                 ControlCenter c = new ControlCenter();
                                 c.ShowDialog();
-
                             }
                         }
                         else
                         {
-                            // MetroFramework.MetroMessageBox.Show(this, "No se pudo rescatar los datos del usuario, favor reintentar.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                             nameForm = "PasswordAnimus";
-                            msgForm = "No se pudo rescatar los datos del usuario, favor reintentar.";
-
+                            msgForm = "Usuario o Password Incorrecto.";
                             msgNotification ms = new msgNotification();
                             ms.ShowDialog();
                             return;
                         }
                     }
                 }
-
-                #region
-                //CoHome coHome = new CoHome();
-                //coHome.nickHome = nickPassword;
-                //coHome.password = txtPassword.Text;
-                //coHome.mail = mailPassword;
-
-                //if (imageHomePath != "")
-                //    coHome.pathImageHome = imageHomePath;
-
-                //if (nameArchiveHome != "")
-                //    coHome.imageHome = nameArchiveHome;
-
-                //int homeIdRescue = 0;
-                ////vamos a validar si existe el home con el correo y nick
-                //int countExist = new BrHome().HomeExits(coHome, out homeIdRescue);
-                //if (countExist == 0)
-                //{
-                //    //inserto home
-                //    idHome = new BrHome().InsertHome(coHome);
-                //    if (idHome > 0)
-                //    {
-                //        //Mando A llamar menu
-                //        this.Hide();
-
-                //        DashBoardMenu dashBoard = new DashBoardMenu();
-                //        dashBoard.ShowDialog();
-                //    }
-                //    else
-                //    {
-                //        MetroFramework.MetroMessageBox.Show(this, "No se pudo registrar el Hogar, pongase en contacto con el administrador.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //    }
-                //}
-                //else
-                //{
-                //    if (countExist == 1 && homeIdRescue != 0)
-                //    {
-                //        coHome.idHome = homeIdRescue;
-                //        //validar password
-                //        Boolean validatePass = new BrHome().validatePassword(coHome);
-
-                //        if (validatePass == false)
-                //        {
-                //            MetroFramework.MetroMessageBox.Show(this, "La contraseña es incorrecta.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //            return;
-                //        }
-
-
-
-                //        idHome = homeIdRescue;
-                //        //Mando A llamar menu
-                //        this.Hide();
-
-                //        DashBoardMenu dashBoard = new DashBoardMenu();
-                //        dashBoard.ShowDialog();
-                //    }
-                //    else
-                //    {
-                //        MetroFramework.MetroMessageBox.Show(this, "No se pudieron rescatar los datos del Hogar, pongase en contacto con el administrador.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //    }
-                //}
-                #endregion
-
-
             }
             catch (Exception ex)
             {

@@ -1,4 +1,5 @@
 ﻿using Animus.BussinesRules;
+using Animus.RestServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,21 +25,21 @@ namespace Animus
         public static string nameForm = "";
         public static string msgForm = "";
 
+        BrHome homeBussinessRules = new BrHome();       
+
         public LoginAnimus()
         {
             InitializeComponent();
             GenerateDataBase();
-
-
-
             string path = System.IO.Directory.GetCurrentDirectory().Replace("\\bin\\Debug", "");
             path = path + "\\" + "usr.txt";
             if (!File.Exists(path))
             {
                 File.Create(path).Close();
             }
-
+            this.ChechInternet();
         }
+
         public void GenerateDataBase()
         {
             try
@@ -54,7 +55,6 @@ namespace Animus
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            // this.Close();
             this.Hide();
         }
 
@@ -62,7 +62,6 @@ namespace Animus
         public Boolean ValidateFields(out string msg)
         {
             Boolean validate = true;
-            BrHome br = new BrHome();
             msg = string.Empty;
             if (txtCorreo.Text == "")
             {
@@ -81,7 +80,7 @@ namespace Animus
             }
             if (txtCorreo.Text != "")
             {
-                if (br.validateMail(txtCorreo.Text) == false)
+                if (this.homeBussinessRules.ValidateEmailFormat(txtCorreo.Text) == false)
                 {
                     msg = "El campo Correo Electrónico no tiene un formato correcto.";
                     validate = false;
@@ -98,179 +97,61 @@ namespace Animus
             string msg = string.Empty;
             if (ValidateFields(out msg) == false)
             {
-                //MetroFramework.MetroMessageBox.Show(this, msg, "Animus", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
                 nameForm = "LoginAnimus";
                 msgForm = msg;
-
                 msgNotification ms = new msgNotification();
                 ms.ShowDialog();
                 return;
             }
-
-
             //si el email ya existe lo tengo que mandar a iniciar session
-            string status = string.Empty, code = string.Empty;
-            BrAnimusRest brAnimus = new BrAnimusRest();
-            Boolean validateMail = brAnimus.validateMail(txtCorreo.Text, out status, out code);
-
-            if (status.ToUpper().Trim() != "OK" || code != "200")
-            {
-                //MetroFramework.MetroMessageBox.Show(this, "No existe conexión con el servidor, vuelva a reintentarlo.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-
-                nameForm = "LoginAnimus";
-                msgForm = "No existe conexión con el servidor, vuelva a reintentarlo.";
-
-                msgNotification ms = new msgNotification();
-                ms.ShowDialog();
-
-                return;
-            }
-
-            if (validateMail == true)
+            Boolean exists = this.ValidateExistsEmail();
+            if (exists == true)
             {
                 txtCorreo.Text = string.Empty;
                 txtNick.Text = string.Empty;
-                //MetroFramework.MetroMessageBox.Show(this, "La cuenta de correo existe, debe ingresar por la opción ya tengo una cuenta.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
                 nameForm = "LoginAnimus";
                 msgForm = "La cuenta de correo existe, debe ingresar por la opción ya tengo una cuenta.";
-
                 msgNotification ms = new msgNotification();
                 ms.ShowDialog();
-
                 return;
             }
-
-            //PASSING VARIABLES
-
             this.Hide();
-
-            //this.Close();
-
             mail = txtCorreo.Text;
             nick = txtNick.Text;
-
-            // Password pass = new Password();
-            //pass.ShowDialog();
-
             PasswordAnimus pass = new PasswordAnimus();
             pass.ShowDialog();
+        }
+
+        private void btnCuenta_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void txtCorreo_Leave(object sender, EventArgs e)
         {
             if (txtCorreo.Text != "")
             {
-                BrHome br = new BrHome();
-                //vamos a validar que el correo sea valido
-                if (br.validateMail(txtCorreo.Text) == true)
+                if (this.homeBussinessRules.ValidateEmailFormat(txtCorreo.Text) == true)
                 {
-
-                    //si el email ya existe lo tengo que mandar a iniciar session
-                    string status = string.Empty, code = string.Empty;
-                    BrAnimusRest brAnimus = new BrAnimusRest();
-                    Boolean validateMail = brAnimus.validateMail(txtCorreo.Text, out status, out code);
-
-                    if (status.ToUpper().Trim() != "OK" || code != "200")
+                    Boolean exists = this.ValidateExistsEmail();
+                    if (exists == true)
                     {
-
-                        nameForm = "LoginAnimus";
-                        msgForm = "No existe conexión con el servidor, vuelva a reintentarlo.";
-
-                        msgNotification ms = new msgNotification();
-                        ms.ShowDialog();
-
-                        return;
-                    }
-
-                    if (validateMail == true)
-                    {
-
                         nameForm = "LoginAnimus";
                         msgForm = "La cuenta de correo existe, debe ingresar por la opción ya tengo una cuenta.";
-
                         msgNotification ms = new msgNotification();
                         ms.ShowDialog();
-
-
-                        //MetroFramework.MetroMessageBox.Show(this, "La cuenta de correo existe, debe ingresar por la opción ya tengo una cuenta.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
-
-                    #region
-                    //CoHome coHome = new CoHome();
-                    //int homeIdRescue = 0;
-                    //coHome.mail = txtCorreo.Text;
-                    ////buscamos si el correo es valido para cargar la foto en el picture
-                    //int countExist = new BrHome().HomeExits(coHome, out homeIdRescue);
-                    //if (homeIdRescue != 0)
-                    //{
-                    //    DataTable dtHome = new BrHome().GetHomeId(homeIdRescue);
-                    //    if (dtHome.Rows.Count > 0)
-                    //    {
-                    //        string pathImage = dtHome.Rows[0]["imagehome"].ToString();
-                    //        if (pathImage != "")
-                    //            pictureBox1.Image = Image.FromFile(pathImage);
-                    //        else
-                    //            pictureBox1.Image = Image.FromFile(pathImageDefault + imageDefault);
-                    //        txtNick.Text = dtHome.Rows[0]["nickhome"].ToString();
-                    //        errorProvider.SetError(txtCorreo, "");
-                    //        errorProvider.SetError(txtNick, "");
-                    //        idHome = Convert.ToInt32(dtHome.Rows[0]["idhome"].ToString());
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    if (File.Exists(pathImageDefault + imageDefault))
-                    //    {
-                    //        pictureBox1.Image = Image.FromFile(pathImageDefault + imageDefault);
-                    //        txtNick.Text = "";
-                    //        errorProvider.SetError(txtCorreo, "");
-                    //        errorProvider.SetError(txtNick, "");
-                    //    }
-                    //    idHome = 0;
-                    //    mail = "";
-                    //    nick = "";
-                    //}
-                    #endregion
                 }
                 else
                 {
-
-                    //MetroFramework.MetroMessageBox.Show(this, "El campo correo electrónico no tiene un formato correcto.", "Animus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     txtCorreo.Text = string.Empty;
                     txtNick.Text = string.Empty;
-
-
                     nameForm = "LoginAnimus";
                     msgForm = "El campo correo electrónico no tiene un formato correcto.";
-
                     msgNotification ms = new msgNotification();
                     ms.ShowDialog();
-
-
-                    //    if (File.Exists(pathImageDefault + imageDefault))
-                    //    {
-                    //        pictureBox1.Image = Image.FromFile(pathImageDefault + imageDefault);
-                    //        txtNick.Text = "";
-                    //        errorProvider.SetError(txtCorreo, "");
-                    //        errorProvider.SetError(txtNick, "");
-                    //    }
-                    //    idHome = 0;
-                    //    mail = "";
-                    //    nick = "";
                 }
-            }
-            else
-            {
-                //idHome = 0;
-                //mail = "";
-                //nick = "";
             }
         }
 
@@ -315,5 +196,36 @@ namespace Animus
             }
         }
 
+        private void btnCheckInternet_Click(object sender, EventArgs e)
+        {
+            this.ChechInternet();
+        }
+
+        private Boolean ValidateExistsEmail()
+        {
+            Boolean internetStatus = true;
+            Boolean exists = this.homeBussinessRules.EmailExists(txtCorreo.Text, out internetStatus);
+            if (!internetStatus)
+            {
+                this.InternetStatus(internetStatus);
+                return internetStatus;
+            }
+            return exists;
+        }
+
+        private void ChechInternet()
+        {
+            Boolean internetStatus = RsBase.CheckForInternetConnection();
+            this.InternetStatus(internetStatus);
+        }
+
+        private void InternetStatus(Boolean status)
+        {
+            txtCorreo.Enabled = status;
+            txtNick.Enabled = status;
+            btnCuenta.Enabled = status;
+            btnRegistro.Enabled = status;
+            btnCheckInternet.Visible = !status;
+        }
     }
 }

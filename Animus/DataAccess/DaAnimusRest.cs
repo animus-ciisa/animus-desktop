@@ -208,26 +208,15 @@ namespace Animus.DataAccess
             status = string.Empty;
             code = string.Empty;
             Boolean responseMethod = false;
+
             try
             {
                 HttpWebRequest webRequest;
                 string urlEmail = ConfigurationManager.AppSettings["urlEmailValidate"];
-
                 string requestParams = "{ \"email\": \"" + mail + "\"}";
-
-                //     string requestParams = ""; //format information you need to pass into that string ('info={ "EmployeeID": [ "1234567", "7654321" ], "Salary": true, "BonusPercentage": 10}');
-
-                // webRequest = (HttpWebRequest)WebRequest.Create("http://localhost:1111/animus-rest-test/?method=list");
-
-                // webRequest = (HttpWebRequest)WebRequest.Create("http://localhost:1111/animus-rest-test/?method=home/validate-email&exists=true");
-
-
-                webRequest = (HttpWebRequest)WebRequest.Create(urlEmail);//("http://localhost:1111/animus-rest-test/?method=home");
-
-
+                webRequest = (HttpWebRequest)WebRequest.Create(urlEmail);
                 webRequest.Method = "POST";
                 webRequest.ContentType = "application/json";
-
                 byte[] byteArray = Encoding.UTF8.GetBytes(requestParams);
                 webRequest.ContentLength = byteArray.Length;
                 using (Stream requestStream = webRequest.GetRequestStream())
@@ -243,8 +232,6 @@ namespace Animus.DataAccess
                         StreamReader rdr = new StreamReader(responseStream, Encoding.UTF8);
                         var rawJson = new StreamReader(response.GetResponseStream()).ReadToEnd();
                         JObject json = JObject.Parse(rawJson);  //Turns your raw string into a key value lookup
-
-
                         //CUANDO NO ES ARRAY
                         string msg = json["data"]["exists"].ToString();
                         if (msg.ToUpper().Trim() == "TRUE")
@@ -252,22 +239,6 @@ namespace Animus.DataAccess
 
                         status = json["status"].ToString();
                         code = json["code"].ToString();
-
-
-                        ////CUANDO ES ARRAY
-                        //JArray array = (JArray)json["data"];
-
-                        //if (array.Count > 0)
-                        //{
-                        //    foreach (JObject item in array)
-                        //    {
-                        //        string id_ = item.GetValue("id").ToString();
-                        //        string image = item.GetValue("image").ToString();
-                        //        string email = item.GetValue("email").ToString();
-                        //        string nick = item.GetValue("nick").ToString();
-                        //        string session = item.GetValue("sesion").ToString();
-                        //    }
-                        //}
                     }
                 }
             }

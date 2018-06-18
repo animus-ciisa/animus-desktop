@@ -108,7 +108,7 @@ namespace Animus
             }
             if (txtCorreo.Text != "")
             {
-                if (br.validateMail(txtCorreo.Text) == false)
+                if (br.ValidateEmailFormat(txtCorreo.Text) == false)
                 {
                     errorProvider.SetError(txtCorreo, "El campo Correo Electrónico no tiene un formato correcto.");
                     validate = false;
@@ -307,7 +307,7 @@ namespace Animus
             {
                 BrHome br = new BrHome();
                 //vamos a validar que el correo sea valido
-                if (br.validateMail(txtCorreo.Text) == true)
+                if (br.ValidateEmailFormat(txtCorreo.Text) == true)
                 {
 
                     //si el email ya existe lo tengo que mandar a iniciar session

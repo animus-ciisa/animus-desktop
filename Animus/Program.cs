@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Animus.Common;
+using Animus.DataAccess;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,8 +21,18 @@ namespace Animus
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-
-            string path = System.IO.Directory.GetCurrentDirectory().Replace("\\bin\\Debug", "");
+            DaHome daHome = new DaHome();
+            CoHome home = daHome.Exists();
+            if (home != null)
+            {
+                idHome = home.idHome;
+                Application.Run(new PasswordAnimus());
+            }
+            else
+            {
+                Application.Run(new LoginAnimus());
+            }
+            /*string path = System.IO.Directory.GetCurrentDirectory().Replace("\\bin\\Debug", "");
             path = path + "\\" + "usr.txt";
 
             if (File.Exists(path))
@@ -52,9 +64,7 @@ namespace Animus
             {
 
                 Application.Run(new LoginAnimus());
-            }
-
-
+            }*/
         }
     }
 }

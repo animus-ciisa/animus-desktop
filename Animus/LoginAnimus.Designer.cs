@@ -46,6 +46,7 @@
             this.bunifuElipse3 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.bunifuTransition1 = new BunifuAnimatorNS.BunifuTransition(this.components);
             this.panelCenter = new System.Windows.Forms.Panel();
+            this.btnCheckInternet = new Bunifu.Framework.UI.BunifuThinButton2();
             this.pictureLogin = new System.Windows.Forms.PictureBox();
             this.txtNick = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -161,7 +162,7 @@
             this.bunifuTransition1.SetDecoration(this.bunifuCustomLabel2, BunifuAnimatorNS.DecorationType.None);
             this.bunifuCustomLabel2.Font = new System.Drawing.Font("Century Gothic", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel2.ForeColor = System.Drawing.Color.Silver;
-            this.bunifuCustomLabel2.Location = new System.Drawing.Point(10, 290);
+            this.bunifuCustomLabel2.Location = new System.Drawing.Point(10, 276);
             this.bunifuCustomLabel2.Name = "bunifuCustomLabel2";
             this.bunifuCustomLabel2.Size = new System.Drawing.Size(434, 16);
             this.bunifuCustomLabel2.TabIndex = 7;
@@ -226,7 +227,7 @@
             this.btnCuenta.IconVisible = true;
             this.btnCuenta.IconZoom = 90D;
             this.btnCuenta.IsTab = false;
-            this.btnCuenta.Location = new System.Drawing.Point(42, 335);
+            this.btnCuenta.Location = new System.Drawing.Point(42, 363);
             this.btnCuenta.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCuenta.Name = "btnCuenta";
             this.btnCuenta.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
@@ -239,6 +240,7 @@
             this.btnCuenta.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnCuenta.Textcolor = System.Drawing.Color.White;
             this.btnCuenta.TextFont = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCuenta.Click += new System.EventHandler(this.btnCuenta_Click);
             // 
             // bunifuElipse2
             // 
@@ -268,7 +270,7 @@
             this.btnRegistro.IconVisible = true;
             this.btnRegistro.IconZoom = 90D;
             this.btnRegistro.IsTab = false;
-            this.btnRegistro.Location = new System.Drawing.Point(247, 335);
+            this.btnRegistro.Location = new System.Drawing.Point(243, 363);
             this.btnRegistro.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRegistro.Name = "btnRegistro";
             this.btnRegistro.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
@@ -312,6 +314,7 @@
             // 
             // panelCenter
             // 
+            this.panelCenter.Controls.Add(this.btnCheckInternet);
             this.panelCenter.Controls.Add(this.pictureLogin);
             this.panelCenter.Controls.Add(this.txtNick);
             this.panelCenter.Controls.Add(this.pictureBox2);
@@ -326,6 +329,34 @@
             this.panelCenter.Name = "panelCenter";
             this.panelCenter.Size = new System.Drawing.Size(456, 422);
             this.panelCenter.TabIndex = 11;
+            // 
+            // btnCheckInternet
+            // 
+            this.btnCheckInternet.ActiveBorderThickness = 1;
+            this.btnCheckInternet.ActiveCornerRadius = 20;
+            this.btnCheckInternet.ActiveFillColor = System.Drawing.Color.SeaGreen;
+            this.btnCheckInternet.ActiveForecolor = System.Drawing.Color.White;
+            this.btnCheckInternet.ActiveLineColor = System.Drawing.Color.SeaGreen;
+            this.btnCheckInternet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnCheckInternet.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCheckInternet.BackgroundImage")));
+            this.btnCheckInternet.ButtonText = "Al parecer no está conectado a internet, haga clic aquí para verificar nuevamente" +
+    "";
+            this.btnCheckInternet.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuTransition1.SetDecoration(this.btnCheckInternet, BunifuAnimatorNS.DecorationType.None);
+            this.btnCheckInternet.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCheckInternet.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btnCheckInternet.IdleBorderThickness = 1;
+            this.btnCheckInternet.IdleCornerRadius = 20;
+            this.btnCheckInternet.IdleFillColor = System.Drawing.Color.White;
+            this.btnCheckInternet.IdleForecolor = System.Drawing.Color.SeaGreen;
+            this.btnCheckInternet.IdleLineColor = System.Drawing.Color.SeaGreen;
+            this.btnCheckInternet.Location = new System.Drawing.Point(12, 297);
+            this.btnCheckInternet.Margin = new System.Windows.Forms.Padding(5);
+            this.btnCheckInternet.Name = "btnCheckInternet";
+            this.btnCheckInternet.Size = new System.Drawing.Size(432, 55);
+            this.btnCheckInternet.TabIndex = 13;
+            this.btnCheckInternet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnCheckInternet.Click += new System.EventHandler(this.btnCheckInternet_Click);
             // 
             // pictureLogin
             // 
@@ -445,5 +476,6 @@
         private System.Windows.Forms.PictureBox pictureLogin;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse4;
+        private Bunifu.Framework.UI.BunifuThinButton2 btnCheckInternet;
     }
 }

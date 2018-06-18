@@ -1,4 +1,5 @@
 ﻿using Animus.Common;
+using Animus.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -34,6 +35,25 @@ namespace Animus.DataAccess
             catch (Exception ex)
             {
 
+            }
+        }
+
+        public CoHome Exists()
+        {
+            var query = "SELECT * FROM Home LIMIT 1;";
+            var result = DbContext.Select(query);
+            if (result.Count() > 0)
+            {
+                CoHome home = new CoHome {
+                    idHome = Convert.ToInt32(result[0]["idhome"].ToString()),
+                    nickHome = result[0]["nickhome"].ToString(),
+                    mail = result[0]["mail"].ToString()
+                };
+                return home;
+            }
+            else
+            {
+                return null;
             }
         }
 
@@ -171,9 +191,9 @@ namespace Animus.DataAccess
         }
 
 
-        internal int InsertHome(CoHome coHome, out string response)
+        internal int InsertHome(CoHome coHome)
         {
-            response = string.Empty;
+            string response = string.Empty;
             int cHome = 0;
             DataSet ds = new DataSet();
             try
@@ -186,30 +206,10 @@ namespace Animus.DataAccess
 
                 sqliteCmd = new SQLiteCommand("INSERT INTO Home VALUES(?,?,?,?,null)", sqliteConn);
 
-
                 sqliteCmd.Parameters.Add(new SQLiteParameter("@idhome") { Value = coHome.idHome });
                 sqliteCmd.Parameters.Add(new SQLiteParameter("@nickhome") { Value = coHome.nickHome });
                 sqliteCmd.Parameters.Add(new SQLiteParameter("@mail") { Value = coHome.mail });
                 sqliteCmd.Parameters.Add(new SQLiteParameter("@tookenhome") { Value = coHome.tookenHome });
-
-                //  sqliteCmd.Parameters.Add(new SQLiteParameter("@password") { Value = GetSHA1(coHome.password) });
-
-
-                //if (coHome.pathImageHome != "" && coHome.imageHome != "" && coHome.pathImageHome != null && coHome.imageHome != null)
-                //{
-                //    pathImage = pathImage + coHome.imageHome;
-
-                //    if (!File.Exists(pathImage))
-                //        File.Copy(coHome.pathImageHome, pathImage);
-
-                //    sqliteCmd.Parameters.Add(new SQLiteParameter("@pathimagehome") { Value = pathImage });
-                //}
-                //else
-                //{
-                //    sqliteCmd.Parameters.Add(new SQLiteParameter("@pathimagehome") { Value = DBNull.Value });
-                //}
-
-
 
                 sqliteCmd.Transaction = sqliteTransaction;
                 sqliteCmd.ExecuteNonQuery();
@@ -217,23 +217,6 @@ namespace Animus.DataAccess
                 cHome = coHome.idHome;
 
                 sqliteTransaction.Commit();
-                response = "OK";
-
-                //sqliteCmd.CommandText = "select last_insert_rowid()";
-                //sqliteAdapter = new SQLiteDataAdapter(sqliteCmd);
-                //ds = new DataSet();
-                //sqliteAdapter.Fill(ds);
-
-                //if (ds.Tables.Count > 0)
-                //{
-                //    if (ds.Tables[0].Rows.Count > 0)
-                //    {
-                //        cHome = Convert.ToInt32(ds.Tables[0].Rows[0][0].ToString());
-                //    }
-                //}
-                // sqliteTransaction.Commit();
-
-
             }
             catch (SQLiteException ex)
             {
