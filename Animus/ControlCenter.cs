@@ -15,76 +15,25 @@ namespace Animus
 {
     public partial class ControlCenter : Form
     {
-        public ControlCenter()
+        private CoHome activeHome;
+        private CoSesion activeSession;
+        private BrBatch brBatch;
+
+        public ControlCenter(CoHome home, CoSesion session)
         {
             InitializeComponent();
             alarms1.BringToFront();
-
-
-
-            Timer MyTimer = new Timer();
-            MyTimer.Interval = Convert.ToInt32(ConfigurationManager.AppSettings["timerConsumeToken"]);//5000;
-            MyTimer.Tick += new EventHandler(MyTimer_Tick);
-            MyTimer.Start();
-        }
-
-        private void MyTimer_Tick(object sender, EventArgs e)
-        {
-            //MessageBox.Show("The form will now be closed.", "Time Elapsed");
-            //this.Close();
-
-            //  consume tooken 
-
-            //OBTENER TOOKEN Y ID ULTIMO DE SESSION.
-            string token = string.Empty;
-            int id = 0;
-            new BrSesion().getData(out token, out id);//token y id session
-            if (id != 0 && token != "")
-            {
-                CoSesion coSession = new CoSesion();
-                coSession.id = id;
-                coSession.token = token;
-                string status = string.Empty, code = string.Empty;
-                BrAnimusRest brRest = new BrAnimusRest();
-                string tookenResponse = brRest.renewToken(token, out status, out code);
-                if (status.ToUpper() == "OK")
-                {
-                    coSession.token = token; // TOKEN NUEVO
-                    new BrSesion().updateUltimetoken(coSession);
-                }
-
-            }
-
-            //CoHome homeCo = PasswordAnimus.homeControl; // pasar objeto entero con tooken incluido
-            //string tooken = homeCo.tookenHome;
-            //BrAnimusRest brRest = new BrAnimusRest();
-            //string status = string.Empty, code = string.Empty;
-            //string tookenResponse = brRest.renewToken(tooken, out status, out code);
-            //if (tookenResponse != "")
-            //{
-
-            //    //INSERTO EN BD Y AQUI VOY RENOVANDO AGREGAR LLAMADA BD
-            //    PasswordAnimus.homeControl.tookenHome = tookenResponse;
-            //}
-
+            this.brBatch = new BrBatch();
+            this.brBatch.StartProcess();
+            this.activeHome = home;
+            this.activeSession = session;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            new BrSesion().CloseSession(this.activeSession);
             msgCloseSession msg = new msgCloseSession();
             msg.ShowDialog();
-
-            if (PasswordAnimus.idSession != 0)
-            {
-                //finaliza session campo fin.
-                CoSesion coSession = new CoSesion();
-                coSession.end = DateTime.Now;
-                coSession.id = PasswordAnimus.idSession;
-                new BrSesion().update(coSession);
-
-
-            }
-            //this.Close();
             this.Hide();
         }
 
@@ -95,25 +44,18 @@ namespace Animus
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
-            if (panelMenu.Width == 50)
+            /*if (panelMenu.Width == 50)
             {
                 panelMenu.Visible = false;
                 this.btnMenu.Location = new System.Drawing.Point(215, 0);
                 panelMenu.Width = 265;
-                panelAnimator.ShowSync(panelMenu);
-
-
-
             }
             else
             {
-
                 panelMenu.Visible = false;
                 this.btnMenu.Location = new System.Drawing.Point(0, 0);
-                panelMenu.Width = 50;
-                panelAnimator.ShowSync(panelMenu);
-            }
-
+                panelMenu.Width = 50;    
+            }*/
         }
 
         private void btnAlarmas_Click(object sender, EventArgs e)

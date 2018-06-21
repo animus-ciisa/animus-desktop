@@ -49,7 +49,7 @@ namespace Animus
             try
             {
                 BrHome br = new BrHome();
-                br.GenerateDataBase();
+                //br.GenerateDataBase();
             }
             catch (Exception ex)
             {

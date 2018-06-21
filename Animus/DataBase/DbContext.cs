@@ -34,7 +34,7 @@ namespace Animus.DataBase
             return db;
         }
 
-        public static int Insert(string query, DbParameter[] parameters)
+        public static int InsertOrUpdate(string query, DbParameter[] parameters)
         {
             int insertId;
             using (var ctx = DbContext.GetInstance())

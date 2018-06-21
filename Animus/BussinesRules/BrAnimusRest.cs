@@ -39,7 +39,7 @@ namespace Animus.BussinesRules
             }
             catch (Exception ex)
             {
-                coHome.idHome = 0;
+                coHome.id = 0;
             }
         }
         public CoHome registerHome(out string status, out string code, CoHome coHome)
@@ -53,7 +53,7 @@ namespace Animus.BussinesRules
             }
             catch (Exception ex)
             {
-                coHome.idHome = 0;
+                coHome.id = 0;
                 return coHome;
             }
         }

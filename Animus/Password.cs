@@ -57,7 +57,7 @@ namespace Animus
                     if (mailPassword != "" && nickPassword != "" && txtPassword.Text != "")
                     {
                         CoHome coHome = new CoHome();
-                        coHome.nickHome = nickPassword;
+                        coHome.nick = nickPassword;
                         coHome.password = txtPassword.Text;
                         coHome.mail = mailPassword;
                         string status = string.Empty;
@@ -77,7 +77,7 @@ namespace Animus
                             return;
                         }
 
-                        if (coHome.idHome != 0)
+                        if (coHome.id != 0)
                         {
                             string response = string.Empty;
                             //insertamos home en base de datos
@@ -90,8 +90,8 @@ namespace Animus
                                 //remove text archive
                                 //File.Delete(path);
                                 //create archive
-                                idHome = coHome.idHome;
-                                string createText = coHome.idHome + ";" + coHome.mail + ";" + coHome.nickHome;
+                                idHome = coHome.id;
+                                string createText = coHome.id + ";" + coHome.mail + ";" + coHome.nick;
                                 File.WriteAllText(path, createText);
 
                                 homeControl = coHome;
@@ -101,8 +101,8 @@ namespace Animus
                                 //dashBoard.ShowDialog();
 
                                 this.Close();
-                                ControlCenter c = new ControlCenter();
-                                c.ShowDialog();
+                                //ControlCenter c = new ControlCenter();
+                                //c.ShowDialog();
                             }
 
                         }
@@ -133,7 +133,7 @@ namespace Animus
                             return;
                         }
 
-                        if (coHome.idHome != 0)
+                        if (coHome.id != 0)
                         {
                             // mando a llamar al dashboard
                             //this.Hide();
@@ -141,8 +141,8 @@ namespace Animus
                             //d.ShowDialog();
                             homeControl = coHome;
                             this.Hide();
-                            ControlCenter c = new ControlCenter();
-                            c.ShowDialog();
+                            //ControlCenter c = new ControlCenter();
+                            //c.ShowDialog();
                         }
                         else
                         {
@@ -236,10 +236,10 @@ namespace Animus
             mailPassword = Login.mail;
             nickPassword = Login.nick;
 
-            int idHome = Program.idHome;
+            //int idHome = Program.idHome;
             if (idHome != 0)
             {
-                DataTable dtHome = new BrHome().GetHomeId(idHome);
+                /*DataTable dtHome = new BrHome().GetHomeId(idHome);
                 if (dtHome.Rows.Count > 0)
                 {
                     lblHogar.Visible = true;
@@ -264,7 +264,7 @@ namespace Animus
                     this.linkPass.Visible = false;
                     btnSaveHome.Enabled = true;
 
-                }
+                }*/
             }
             else
             {

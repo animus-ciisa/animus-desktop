@@ -9,24 +9,24 @@ namespace Animus.Common
     [Serializable()]
     public class CoHome
     {
-        private int _idHome;
-        private string _nickHome;
+        private int _id;
+        private string _nick;
         private string _mail;
         private string _password;
         private string _tookenHome;
         private string _pathImageHome;
-        private string _imageHome;
+        private string _image;
 
-        public int idHome
+        public int id
         {
-            get { return this._idHome; }
-            set { this._idHome = value; }
+            get { return this._id; }
+            set { this._id = value; }
         }
 
-        public string nickHome
+        public string nick
         {
-            get { return this._nickHome; }
-            set { this._nickHome = value; }
+            get { return this._nick; }
+            set { this._nick = value; }
         }
 
         public string mail
@@ -50,10 +50,10 @@ namespace Animus.Common
             get { return this._pathImageHome; }
             set { this._pathImageHome = value; }
         }
-        public string imageHome
+        public string image
         {
-            get { return this._imageHome; }
-            set { this._imageHome = value; }
+            get { return this._image; }
+            set { this._image = value; }
         }
 
     }

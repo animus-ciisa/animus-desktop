@@ -22,7 +22,7 @@ namespace Animus.DataAccess
             try
             {
 
-                string requestParams = "{ \"email\": \"" + coHome.mail + "\", \"nick\": \"" + coHome.nickHome + "\", \"password\": \"" + coHome.password + "\" }";
+                string requestParams = "{ \"email\": \"" + coHome.mail + "\", \"nick\": \"" + coHome.nick + "\", \"password\": \"" + coHome.password + "\" }";
                 //string requestParams = ""; //format information you need to pass into that string ('info={ "EmployeeID": [ "1234567", "7654321" ], "Salary": true, 
                 HttpWebRequest webRequest;
                 string urlHome = ConfigurationManager.AppSettings["urlRegisterHome"];
@@ -60,8 +60,8 @@ namespace Animus.DataAccess
                         string nick = json["data"]["nick"].ToString();
                         string tooken = json["data"]["session"]["token"].ToString();
                         //string session = json["data"]["sesion"].ToString();
-                        coHome.idHome = Convert.ToInt32(id);
-                        coHome.nickHome = nick;
+                        coHome.id = Convert.ToInt32(id);
+                        coHome.nick = nick;
                         coHome.mail = email;
                         coHome.tookenHome = tooken;
 
@@ -72,7 +72,7 @@ namespace Animus.DataAccess
             }
             catch (Exception ex)
             {
-                coHome.idHome = 0;
+                coHome.id = 0;
                 return coHome;
             }
         }
@@ -188,8 +188,8 @@ namespace Animus.DataAccess
                         string nick = json["data"]["nick"].ToString();
                         string tooken = json["data"]["session"]["token"].ToString();
                         //string session = json["data"]["sesion"].ToString();
-                        coHome.idHome = Convert.ToInt32(id);
-                        coHome.nickHome = nick;
+                        coHome.id = Convert.ToInt32(id);
+                        coHome.nick = nick;
                         coHome.mail = email;
                         coHome.tookenHome = tooken;
                     }
@@ -198,7 +198,7 @@ namespace Animus.DataAccess
             }
             catch (Exception ex)
             {
-                coHome.idHome = 0;
+                coHome.id = 0;
 
             }
         }

@@ -25,14 +25,14 @@ namespace Animus
 
             idHomeDashBoard = Password.idHome;
 
-            DataTable dtHome = new BrHome().GetHomeId(idHomeDashBoard);
+            /*DataTable dtHome = new BrHome().GetHomeId(idHomeDashBoard);
             if (dtHome.Rows.Count > 0)
             {
                 string pathImage = dtHome.Rows[0]["imagehome"].ToString();
                 if (pathImage != "")
                     pictureBox1.Image = Image.FromFile(pathImage);
 
-            }
+            }*/
 
 
         }

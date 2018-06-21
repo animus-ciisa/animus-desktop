@@ -8,6 +8,7 @@ using System.Configuration;
 using Animus.Common;
 using Newtonsoft.Json.Linq;
 using System.IO;
+using Animus.DataAccess;
 
 namespace Animus.RestServices
 {
@@ -21,9 +22,15 @@ namespace Animus.RestServices
             internetStatus = RsBase.CheckForInternetConnection();
             if (internetStatus)
             {
+                Console.WriteLine(backendUrl + resource);
                 webRequest = (HttpWebRequest)WebRequest.Create(backendUrl + resource);
                 webRequest.Method = "POST";
                 webRequest.ContentType = "application/json";
+                if (useToken)
+                {
+                    string lastToken = new DaSesion().GetActiveSession().token;
+                    webRequest.Headers.Add("Authorization", "bearer " + lastToken);
+                }
                 byte[] byteArray = Encoding.UTF8.GetBytes(jsonParams);
                 webRequest.ContentLength = byteArray.Length;
                 using (Stream requestStream = webRequest.GetRequestStream())

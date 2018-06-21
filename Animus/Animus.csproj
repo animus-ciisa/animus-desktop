@@ -36,6 +36,22 @@
     <Reference Include="Bunifu_UI_v1.52">
       <HintPath>..\..\Bunifu_UI_v1.52\Bunifu_UI_v1.52.dll</HintPath>
     </Reference>
+    <Reference Include="DirectShowLib, Version=2.1.0.1599, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DirectShowLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.DebuggerVisualizers.VS2017, Version=3.4.1.2976, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Emgu.CV.DebuggerVisualizers.VS2017.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI, Version=3.4.1.2976, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Emgu.CV.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.World, Version=3.4.1.2976, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Emgu.CV.World.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -95,6 +111,8 @@
       <DependentUpon>Alarms.cs</DependentUpon>
     </Compile>
     <Compile Include="BussinesRules\BrAnimusRest.cs" />
+    <Compile Include="BussinesRules\BrBatch.cs" />
+    <Compile Include="BussinesRules\BrCamera.cs" />
     <Compile Include="BussinesRules\BrHome.cs" />
     <Compile Include="BussinesRules\BrSesion.cs" />
     <Compile Include="BussinesRules\BrTest.cs" />
@@ -104,10 +122,17 @@
     <Compile Include="CamerasAndMonitors.Designer.cs">
       <DependentUpon>CamerasAndMonitors.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\CoCamera.cs" />
     <Compile Include="Common\CoHome.cs" />
     <Compile Include="Common\CoRestResponse.cs" />
     <Compile Include="Common\CoSesion.cs" />
     <Compile Include="Common\CoTest.cs" />
+    <Compile Include="Components\CamerasAndMonitors\CameraSelection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\CamerasAndMonitors\CameraSelection.Designer.cs">
+      <DependentUpon>CameraSelection.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlCenter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +146,7 @@
       <DependentUpon>DashBoardMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\DaAnimusRest.cs" />
+    <Compile Include="DataAccess\DaCamera.cs" />
     <Compile Include="DataAccess\DaHome.cs" />
     <Compile Include="DataAccess\DaSesion.cs" />
     <Compile Include="DataAccess\DaTest.cs" />
@@ -132,11 +158,11 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginAnimus.cs">
+    <Compile Include="HomeRegistry.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginAnimus.Designer.cs">
-      <DependentUpon>LoginAnimus.cs</DependentUpon>
+    <Compile Include="HomeRegistry.Designer.cs">
+      <DependentUpon>HomeRegistry.cs</DependentUpon>
     </Compile>
     <Compile Include="msgCloseSession.cs">
       <SubType>Form</SubType>
@@ -156,21 +182,26 @@
     <Compile Include="Password.Designer.cs">
       <DependentUpon>Password.cs</DependentUpon>
     </Compile>
-    <Compile Include="PasswordAnimus.cs">
+    <Compile Include="HomeAuthentication.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PasswordAnimus.Designer.cs">
-      <DependentUpon>PasswordAnimus.cs</DependentUpon>
+    <Compile Include="HomeAuthentication.Designer.cs">
+      <DependentUpon>HomeAuthentication.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestServices\RsBase.cs" />
+    <Compile Include="RestServices\RsCamera.cs" />
     <Compile Include="RestServices\RsHome.cs" />
+    <Compile Include="RestServices\RsSession.cs" />
     <EmbeddedResource Include="Alarms.resx">
       <DependentUpon>Alarms.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CamerasAndMonitors.resx">
       <DependentUpon>CamerasAndMonitors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\CamerasAndMonitors\CameraSelection.resx">
+      <DependentUpon>CameraSelection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ControlCenter.resx">
       <DependentUpon>ControlCenter.cs</DependentUpon>
@@ -181,8 +212,8 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginAnimus.resx">
-      <DependentUpon>LoginAnimus.cs</DependentUpon>
+    <EmbeddedResource Include="HomeRegistry.resx">
+      <DependentUpon>HomeRegistry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="msgCloseSession.resx">
       <DependentUpon>msgCloseSession.cs</DependentUpon>
@@ -193,8 +224,8 @@
     <EmbeddedResource Include="Password.resx">
       <DependentUpon>Password.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PasswordAnimus.resx">
-      <DependentUpon>PasswordAnimus.cs</DependentUpon>
+    <EmbeddedResource Include="HomeAuthentication.resx">
+      <DependentUpon>HomeAuthentication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

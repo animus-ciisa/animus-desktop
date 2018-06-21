@@ -1,4 +1,5 @@
-﻿using Animus.Common;
+﻿using Animus.BussinesRules;
+using Animus.Common;
 using Animus.DataAccess;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,6 @@ namespace Animus
 {
     static class Program
     {
-        public static int idHome = 0;
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
@@ -21,50 +21,17 @@ namespace Animus
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            DaHome daHome = new DaHome();
-            CoHome home = daHome.Exists();
+            CoHome home = new BrHome().Exists();
+
             if (home != null)
             {
-                idHome = home.idHome;
-                Application.Run(new PasswordAnimus());
+                Application.Run(new HomeAuthentication(home));
             }
             else
             {
-                Application.Run(new LoginAnimus());
+                Application.Run(new HomeRegistry());
             }
-            /*string path = System.IO.Directory.GetCurrentDirectory().Replace("\\bin\\Debug", "");
-            path = path + "\\" + "usr.txt";
-
-            if (File.Exists(path))
-            {
-                using (StreamReader sr = File.OpenText(path))
-                {
-                    string status = "";
-                    string s = "";
-                    while ((s = sr.ReadLine()) != null)
-                    {
-                        if (s.Contains(";"))
-                        {
-                            idHome = Convert.ToInt32(s.Split(';')[0].ToString());
-                            status = "ok";
-                        }
-                    }
-                    if (status == "ok")
-                    {
-                        Application.Run(new PasswordAnimus());
-
-                    }
-                    else
-                    {
-                        Application.Run(new LoginAnimus());
-                    }
-                }
-            }
-            else
-            {
-
-                Application.Run(new LoginAnimus());
-            }*/
+            
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Animus.DataAccess
     public class DaHome
     {
 
-        SQLiteConnection sqliteConn;
+        /*SQLiteConnection sqliteConn;
         SQLiteCommand sqliteCmd;
         SQLiteDataReader sqliteDatareader;
         SQLiteTransaction sqliteTransaction;
@@ -36,6 +36,30 @@ namespace Animus.DataAccess
             {
 
             }
+        }*/
+
+        /*
+         query = "INSERT INTO Camera VALUES(?, ? , ?)";
+                DbParameter[] parameters = {
+                    new DbParameter("name", camera.name.ToString()),
+                    new DbParameter("status", ((camera.status) ? 1 : 0).ToString()),
+                    new DbParameter("associate", ((camera.associate) ? 1 : 0).ToString())
+                };
+                DbContext.InsertOrUpdate(query, parameters);
+             */
+
+        public CoHome Save(CoHome home)
+        {
+            var query = "INSERT INTO Home VALUES(?, ? , ?, ?)";
+            DbParameter[] parameters = {
+                new DbParameter("id", home.id.ToString()),
+                new DbParameter("nick", home.nick),
+                new DbParameter("mail", home.mail),
+                new DbParameter("image", home.image)
+            };
+            int id = DbContext.InsertOrUpdate(query, parameters);
+            home.id = id;
+            return home;
         }
 
         public CoHome Exists()
@@ -45,9 +69,10 @@ namespace Animus.DataAccess
             if (result.Count() > 0)
             {
                 CoHome home = new CoHome {
-                    idHome = Convert.ToInt32(result[0]["idhome"].ToString()),
-                    nickHome = result[0]["nickhome"].ToString(),
-                    mail = result[0]["mail"].ToString()
+                    id = Convert.ToInt32(result[0]["id"].ToString()),
+                    nick = result[0]["nick"].ToString(),
+                    mail = result[0]["mail"].ToString(),
+                    image = result[0]["image"].ToString()
                 };
                 return home;
             }
@@ -57,7 +82,7 @@ namespace Animus.DataAccess
             }
         }
 
-        public int HomeExits(CoHome home, out int idHome)
+        /*public int HomeExits(CoHome home, out int idHome)
         {
             DataSet ds = new DataSet();
             int userExits = 0;
@@ -206,15 +231,15 @@ namespace Animus.DataAccess
 
                 sqliteCmd = new SQLiteCommand("INSERT INTO Home VALUES(?,?,?,?,null)", sqliteConn);
 
-                sqliteCmd.Parameters.Add(new SQLiteParameter("@idhome") { Value = coHome.idHome });
-                sqliteCmd.Parameters.Add(new SQLiteParameter("@nickhome") { Value = coHome.nickHome });
+                sqliteCmd.Parameters.Add(new SQLiteParameter("@idhome") { Value = coHome.id });
+                sqliteCmd.Parameters.Add(new SQLiteParameter("@nickhome") { Value = coHome.nick });
                 sqliteCmd.Parameters.Add(new SQLiteParameter("@mail") { Value = coHome.mail });
                 sqliteCmd.Parameters.Add(new SQLiteParameter("@tookenhome") { Value = coHome.tookenHome });
 
                 sqliteCmd.Transaction = sqliteTransaction;
                 sqliteCmd.ExecuteNonQuery();
 
-                cHome = coHome.idHome;
+                cHome = coHome.id;
 
                 sqliteTransaction.Commit();
             }
@@ -372,9 +397,9 @@ namespace Animus.DataAccess
 
 
                 sqliteCmd.CommandText = "update home set nickhome = @nickhome,imagehome=@imagehome where idhome=@idhome";
-                sqliteCmd.Parameters.Add(new SQLiteParameter("@idhome") { Value = coHome.idHome });
-                sqliteCmd.Parameters.Add(new SQLiteParameter("@nickhome") { Value = coHome.nickHome });
-                sqliteCmd.Parameters.Add(new SQLiteParameter("@imagehome") { Value = coHome.imageHome });
+                sqliteCmd.Parameters.Add(new SQLiteParameter("@idhome") { Value = coHome.id });
+                sqliteCmd.Parameters.Add(new SQLiteParameter("@nickhome") { Value = coHome.nick });
+                sqliteCmd.Parameters.Add(new SQLiteParameter("@imagehome") { Value = coHome.image });
 
                 sqliteCmd.Transaction = sqliteTransaction;
                 sqliteCmd.ExecuteNonQuery();
@@ -446,7 +471,7 @@ namespace Animus.DataAccess
             try
             {
 
-                DataTable dt = GetHomeId(coHome.idHome);
+                DataTable dt = GetHomeId(coHome.id);
 
                 if (dt.Rows.Count > 0)
                 {
@@ -461,6 +486,6 @@ namespace Animus.DataAccess
 
             }
             return response;
-        }
+        }*/
     }
 }

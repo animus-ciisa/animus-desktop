@@ -14,20 +14,17 @@ namespace Animus.BussinesRules
 {
     public class BrHome
     {
-        internal void GenerateDataBase()
-        {
-            try
-            {
-                DaHome da = new DaHome();
-                da.GenerateDataBase();
-            }
-            catch (Exception ex)
-            {
 
-            }
+        RsHome rsHome;
+        DaHome daHome;
+
+        public BrHome()
+        {
+            this.rsHome = new RsHome();
+            this.daHome = new DaHome();
         }
 
-        internal bool ValidateEmailFormat(string mail)
+        public Boolean ValidateEmailFormat(string mail)
         {
             try
             {
@@ -42,94 +39,32 @@ namespace Animus.BussinesRules
             }
         }
 
-        internal int HomeExits(CoHome home, out int idHome)
+        public CoHome Exists()
         {
-            idHome = 0;
-            try
-            {
-                DaHome da = new DaHome();
-                return da.HomeExits(home, out idHome);
-            }
-            catch (Exception ex)
-            {
-                return 0;
-            }
-        }
-
-        /*internal int InsertHome(CoHome coHome,out string response)
-        {
-            response = string.Empty;
-            try
-            {
-                DaHome da = new DaHome();
-                return da.InsertHome(coHome,out response);
-            }
-            catch (Exception ex)
-            {
-                return 0;
-            }
-        }*/
-
-        internal DataTable GetHomeId(int homeIdRescue)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                DaHome da = new DaHome();
-                dt = da.GetHomeId(homeIdRescue);
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                return dt;
-            }
-        }
-
-        internal void UpdateHome(CoHome coHome)
-        {
-            try
-            {
-                DaHome da = new DaHome();
-                da.UpdateHome(coHome);
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-        internal bool ValidatePassword(CoHome coHome)
-        {
-            try
-            {
-                DaHome da = new DaHome();
-                return da.validatePassword(coHome);
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            return this.daHome.Exists();
         }
 
         public Boolean EmailExists(string email, out Boolean internetStatus)
         {
-            RsHome restService = new RsHome();
-            return restService.EmailExists(email, out internetStatus);
+            return this.rsHome.EmailExists(email, out internetStatus);
         }
 
-        public CoHome Save(CoHome home, out string sessionToken, out Boolean internetStatus)
+        public CoHome Registry(CoHome home, out CoSesion session, out Boolean internetStatus)
         {
+            session = new CoSesion();
             internetStatus = true;
-            sessionToken = string.Empty;
-            RsHome restService = new RsHome();
-            home = restService.Save(home, out sessionToken, out internetStatus);
-            if (home.idHome != 0)
+            string sessionToken = string.Empty;
+            home = this.rsHome.Save(home, out sessionToken, out internetStatus);
+            if (home.id != 0)
             {
                 try
                 {
-                    DaHome da = new DaHome();
-                    da.InsertHome(home);
-                }catch (Exception ex)
+                    this.daHome.Save(home);
+                    session.start = DateTime.Now;
+                    session.token = sessionToken;
+                    int idSession = new BrSesion().Save(session);
+                }
+                catch (Exception ex)
                 {
                     home = null;
                 }
@@ -143,9 +78,8 @@ namespace Animus.BussinesRules
 
         public CoHome Authenticate(CoHome home, out string sessionToken, out Boolean internetStatus)
         {
-            RsHome restService = new RsHome();
-            home = restService.Authenticate(home, out sessionToken, out internetStatus);
-            if (home.idHome == 0)
+            home = this.rsHome.Authenticate(home, out sessionToken, out internetStatus);
+            if (home.id == 0)
             {
                 home = null;
             }

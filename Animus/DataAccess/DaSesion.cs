@@ -1,4 +1,5 @@
 ﻿using Animus.Common;
+using Animus.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,366 +13,57 @@ namespace Animus.DataAccess
 {
     public class DaSesion
     {
-        SQLiteConnection sqliteConn;
-        SQLiteCommand sqliteCmd;
-        SQLiteDataReader sqliteDatareader;
-        SQLiteTransaction sqliteTransaction;
-        SQLiteDataAdapter sqliteAdapter;
-
-        String connectionString = ConfigurationManager.AppSettings["connectionString"];
-        String nameDataBase = ConfigurationManager.AppSettings["nameDataBase"];
-        String pathImage = ConfigurationManager.AppSettings["pathImage"];
-
-        internal int insert(CoSesion coSession)
+        public int Save(CoSesion session)
         {
-            int idSesion = 0;
-
-            try
-            {
-                sqliteConn = new SQLiteConnection(connectionString);
-                sqliteConn.Open();
-
-
-                sqliteTransaction = sqliteConn.BeginTransaction();
-
-                sqliteCmd = new SQLiteCommand("INSERT INTO sesion VALUES(null,?,null,?)", sqliteConn);
-
-
-                sqliteCmd.Parameters.Add(new SQLiteParameter("@start") { Value = coSession.start });
-                sqliteCmd.Parameters.Add(new SQLiteParameter("@token") { Value = coSession.token });
-
-                sqliteCmd.Transaction = sqliteTransaction;
-                sqliteCmd.ExecuteNonQuery();
-
-
-                sqliteTransaction.Commit();
-
-                sqliteCmd.CommandText = "select last_insert_rowid()";
-                sqliteAdapter = new SQLiteDataAdapter(sqliteCmd);
-                DataSet ds = new DataSet();
-                sqliteAdapter.Fill(ds);
-
-                if (ds.Tables.Count > 0)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        idSesion = Convert.ToInt32(ds.Tables[0].Rows[0][0].ToString());
-                    }
-                }
-
-
-
-            }
-            catch (SQLiteException ex)
-            {
-                Console.WriteLine("Error: {0}", ex.ToString());
-
-                if (sqliteTransaction != null)
-                {
-                    try
-                    {
-                        sqliteTransaction.Rollback();
-
-                    }
-                    catch (SQLiteException ex2)
-                    {
-
-                        Console.WriteLine("Transaction rollback failed.");
-                        Console.WriteLine("Error: {0}", ex2.ToString());
-
-                    }
-                    finally
-                    {
-                        sqliteTransaction.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (sqliteCmd != null)
-                {
-                    sqliteCmd.Dispose();
-                }
-
-                if (sqliteTransaction != null)
-                {
-                    sqliteTransaction.Dispose();
-                }
-
-                if (sqliteConn != null)
-                {
-                    try
-                    {
-                        sqliteConn.Close();
-
-                    }
-                    catch (SQLiteException ex)
-                    {
-
-                        Console.WriteLine("Closing connection failed.");
-                        Console.WriteLine("Error: {0}", ex.ToString());
-
-                    }
-                    finally
-                    {
-                        sqliteConn.Dispose();
-                    }
-                }
-            }
-            return idSesion;
+            var query = "INSERT INTO sesion VALUES(null, ? , null , ?)";
+            DbParameter[] parameters = {
+                new DbParameter("start", session.start.ToString()),
+                new DbParameter("token", session.token)
+            };
+            int sessionId = DbContext.InsertOrUpdate(query, parameters);
+            return sessionId;
         }
 
-
-        internal void updateUltimetoken(CoSesion coSession)
+        public void UpdateToken(CoSesion session)
         {
-            try
-            {
-                sqliteConn = new SQLiteConnection(connectionString);
-                sqliteConn.Open();
-
-
-                sqliteTransaction = sqliteConn.BeginTransaction();
-                sqliteCmd = new SQLiteCommand(sqliteConn);
-
-
-                sqliteCmd.CommandText = "update sesion set token = @token where id=@id";
-                sqliteCmd.Parameters.Add(new SQLiteParameter("@id") { Value = coSession.id });
-                sqliteCmd.Parameters.Add(new SQLiteParameter("@token") { Value = coSession.token });
-
-
-                sqliteCmd.Transaction = sqliteTransaction;
-                sqliteCmd.ExecuteNonQuery();
-
-                sqliteTransaction.Commit();
-
-            }
-            catch (SQLiteException ex)
-            {
-                Console.WriteLine("Error: {0}", ex.ToString());
-
-                if (sqliteTransaction != null)
-                {
-                    try
-                    {
-                        sqliteTransaction.Rollback();
-
-                    }
-                    catch (SQLiteException ex2)
-                    {
-
-                        Console.WriteLine("Transaction rollback failed.");
-                        Console.WriteLine("Error: {0}", ex2.ToString());
-
-                    }
-                    finally
-                    {
-                        sqliteTransaction.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (sqliteCmd != null)
-                {
-                    sqliteCmd.Dispose();
-                }
-
-                if (sqliteTransaction != null)
-                {
-                    sqliteTransaction.Dispose();
-                }
-
-                if (sqliteConn != null)
-                {
-                    try
-                    {
-                        sqliteConn.Close();
-
-                    }
-                    catch (SQLiteException ex)
-                    {
-
-                        Console.WriteLine("Closing connection failed.");
-                        Console.WriteLine("Error: {0}", ex.ToString());
-
-                    }
-                    finally
-                    {
-                        sqliteConn.Dispose();
-                    }
-                }
-            }
+            var query = "update sesion set token = ? where id = ?";
+            DbParameter[] parameters = {
+                new DbParameter("id", session.id.ToString()),
+                new DbParameter("token", session.token)
+            };
+            int sessionId = DbContext.InsertOrUpdate(query, parameters);
         }
 
-        internal void update(CoSesion coSession)
+        public void CloseSession(CoSesion session)
         {
-            try
-            {
-                sqliteConn = new SQLiteConnection(connectionString);
-                sqliteConn.Open();
-
-
-                sqliteTransaction = sqliteConn.BeginTransaction();
-                sqliteCmd = new SQLiteCommand(sqliteConn);
-
-
-                sqliteCmd.CommandText = "update sesion set end = @end where id=@id";
-                sqliteCmd.Parameters.Add(new SQLiteParameter("@id") { Value = coSession.id });
-                sqliteCmd.Parameters.Add(new SQLiteParameter("@end") { Value = coSession.end });
-
-
-                sqliteCmd.Transaction = sqliteTransaction;
-                sqliteCmd.ExecuteNonQuery();
-
-                sqliteTransaction.Commit();
-
-            }
-            catch (SQLiteException ex)
-            {
-                Console.WriteLine("Error: {0}", ex.ToString());
-
-                if (sqliteTransaction != null)
-                {
-                    try
-                    {
-                        sqliteTransaction.Rollback();
-
-                    }
-                    catch (SQLiteException ex2)
-                    {
-
-                        Console.WriteLine("Transaction rollback failed.");
-                        Console.WriteLine("Error: {0}", ex2.ToString());
-
-                    }
-                    finally
-                    {
-                        sqliteTransaction.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (sqliteCmd != null)
-                {
-                    sqliteCmd.Dispose();
-                }
-
-                if (sqliteTransaction != null)
-                {
-                    sqliteTransaction.Dispose();
-                }
-
-                if (sqliteConn != null)
-                {
-                    try
-                    {
-                        sqliteConn.Close();
-
-                    }
-                    catch (SQLiteException ex)
-                    {
-
-                        Console.WriteLine("Closing connection failed.");
-                        Console.WriteLine("Error: {0}", ex.ToString());
-
-                    }
-                    finally
-                    {
-                        sqliteConn.Dispose();
-                    }
-                }
-            }
+            Console.WriteLine("Se cerrará session de id: " + session.id);
+            var query = "UPDATE sesion SET end = ? WHERE id = ?";
+            DbParameter[] parameters = {
+                new DbParameter("end", DateTime.Now.ToString()),
+                new DbParameter("id", session.id.ToString())
+            };
+            int sessionId = DbContext.InsertOrUpdate(query, parameters);
         }
 
-        internal void getData(out string token, out int id)
+        public CoSesion GetActiveSession()
         {
-            DataSet ds = new DataSet();
-            token = string.Empty;
-            id = 0;
-            try
+            var query = "SELECT id, token FROM Sesion " +
+                        "WHERE (end is null) or (end = '') " +
+                        "ORDER BY start DESC LIMIT 1";
+            var result = DbContext.Select(query);
+            if (result.Count() > 0)
             {
-                sqliteConn = new SQLiteConnection(connectionString);
-                sqliteConn.Open();
-
-
-                sqliteTransaction = sqliteConn.BeginTransaction();
-                sqliteCmd = new SQLiteCommand(sqliteConn);
-
-
-                sqliteCmd.CommandText = "select id,token from Sesion where (end is null) or (end = '') order by start desc limit 1";
-
-                sqliteAdapter = new SQLiteDataAdapter(sqliteCmd);
-                ds = new DataSet();
-                sqliteAdapter.Fill(ds);
-
-                if (ds.Tables.Count > 0)
+                CoSesion session = new CoSesion
                 {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        id = Convert.ToInt32(ds.Tables[0].Rows[0]["id"].ToString());
-                        token = ds.Tables[0].Rows[0]["token"].ToString();
-                    }
-                }
-
+                    id = Convert.ToInt32(result[0]["id"].ToString()),
+                    token = result[0]["token"].ToString()
+                };
+                return session;
             }
-            catch (SQLiteException ex)
+            else
             {
-                Console.WriteLine("Error: {0}", ex.ToString());
-
-                if (sqliteTransaction != null)
-                {
-                    try
-                    {
-                        sqliteTransaction.Rollback();
-
-                    }
-                    catch (SQLiteException ex2)
-                    {
-
-                        Console.WriteLine("Transaction rollback failed.");
-                        Console.WriteLine("Error: {0}", ex2.ToString());
-
-                    }
-                    finally
-                    {
-                        sqliteTransaction.Dispose();
-                    }
-                }
+                return null;
             }
-            finally
-            {
-                if (sqliteCmd != null)
-                {
-                    sqliteCmd.Dispose();
-                }
-
-                if (sqliteTransaction != null)
-                {
-                    sqliteTransaction.Dispose();
-                }
-
-                if (sqliteConn != null)
-                {
-                    try
-                    {
-                        sqliteConn.Close();
-
-                    }
-                    catch (SQLiteException ex)
-                    {
-
-                        Console.WriteLine("Closing connection failed.");
-                        Console.WriteLine("Error: {0}", ex.ToString());
-
-                    }
-                    finally
-                    {
-                        sqliteConn.Dispose();
-                    }
-                }
-            }
-
         }
     }
 }

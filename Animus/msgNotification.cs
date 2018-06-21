@@ -16,26 +16,26 @@ namespace Animus
         {
             InitializeComponent();
 
-            if (LoginAnimus.nameForm != null && LoginAnimus.nameForm != "")
+            if (HomeRegistry.nameForm != null && HomeRegistry.nameForm != "")
             {
                 this.pictureBox2.Location = new System.Drawing.Point(5, 47);
                 picOK.Visible = false;
-                if (LoginAnimus.msgForm != "" && LoginAnimus.msgForm != null)
+                if (HomeRegistry.msgForm != "" && HomeRegistry.msgForm != null)
                 {
-                    string msg = LoginAnimus.msgForm;
+                    string msg = HomeRegistry.msgForm;
                     lblMsge.Text = msg;
-                    LoginAnimus.nameForm = string.Empty;
-                    LoginAnimus.nameForm = string.Empty;
+                    HomeRegistry.nameForm = string.Empty;
+                    HomeRegistry.nameForm = string.Empty;
                 }
 
             }
-            if (PasswordAnimus.nameForm != null && PasswordAnimus.nameForm != "")
+            /*if (HomeAuthentication.nameForm != null && HomeAuthentication.nameForm != "")
             {
 
 
-                if (PasswordAnimus.msgForm != "" && PasswordAnimus.msgForm != null)
+                if (HomeAuthentication.msgForm != "" && HomeAuthentication.msgForm != null)
                 {
-                    if (PasswordAnimus.correook == "OK")
+                    if (HomeAuthentication.correook == "OK")
                     {
                         this.picOK.Location = new System.Drawing.Point(5, 47);
                         this.picOK.Visible = true;
@@ -48,13 +48,13 @@ namespace Animus
                         this.picOK.Visible = false;
                         pictureBox2.Visible = true;
                     }
-                    string msg = PasswordAnimus.msgForm;
+                    string msg = HomeAuthentication.msgForm;
                     lblMsge.Text = msg;
-                    PasswordAnimus.nameForm = string.Empty;
-                    PasswordAnimus.msgForm = string.Empty;
-                    PasswordAnimus.correook = string.Empty;
+                    HomeAuthentication.nameForm = string.Empty;
+                    HomeAuthentication.msgForm = string.Empty;
+                    HomeAuthentication.correook = string.Empty;
                 }
-            }
+            }*/
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
