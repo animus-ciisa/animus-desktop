@@ -29,13 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            BunifuAnimatorNS.Animation animation4 = new BunifuAnimatorNS.Animation();
+            BunifuAnimatorNS.Animation animation1 = new BunifuAnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeRegistry));
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.panelHeader = new System.Windows.Forms.Panel();
-            this.btnCerrar = new Bunifu.Framework.UI.BunifuImageButton();
-            this.btnClose = new Bunifu.Framework.UI.BunifuImageButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.txtCorreo = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.bunifuCustomLabel2 = new Bunifu.Framework.UI.BunifuCustomLabel();
@@ -46,16 +43,19 @@
             this.bunifuElipse3 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.bunifuTransition1 = new BunifuAnimatorNS.BunifuTransition(this.components);
             this.panelCenter = new System.Windows.Forms.Panel();
-            this.btnCheckInternet = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.txtPassword = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.txtNick = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.bunifuElipse4 = new Bunifu.Framework.UI.BunifuElipse(this.components);
-            this.txtPassword = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.btnCheckInternet = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.btnCerrar = new Bunifu.Framework.UI.BunifuImageButton();
+            this.btnClose = new Bunifu.Framework.UI.BunifuImageButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelHeader.SuspendLayout();
+            this.panelCenter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panelCenter.SuspendLayout();
             this.SuspendLayout();
             // 
             // bunifuElipse1
@@ -76,46 +76,6 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(456, 46);
             this.panelHeader.TabIndex = 2;
-            // 
-            // btnCerrar
-            // 
-            this.btnCerrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.bunifuTransition1.SetDecoration(this.btnCerrar, BunifuAnimatorNS.DecorationType.None);
-            this.btnCerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrar.Image")));
-            this.btnCerrar.ImageActive = null;
-            this.btnCerrar.Location = new System.Drawing.Point(419, 11);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(25, 25);
-            this.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnCerrar.TabIndex = 3;
-            this.btnCerrar.TabStop = false;
-            this.btnCerrar.Zoom = 20;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.bunifuTransition1.SetDecoration(this.btnClose, BunifuAnimatorNS.DecorationType.None);
-            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.ImageActive = null;
-            this.btnClose.Location = new System.Drawing.Point(815, 13);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(25, 25);
-            this.btnClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnClose.TabIndex = 2;
-            this.btnClose.TabStop = false;
-            this.btnClose.Zoom = 20;
-            // 
-            // pictureBox1
-            // 
-            this.bunifuTransition1.SetDecoration(this.pictureBox1, BunifuAnimatorNS.DecorationType.None);
-            this.pictureBox1.Image = global::Animus.Properties.Resources.home_white;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 16);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
             // 
             // bunifuCustomLabel1
             // 
@@ -289,22 +249,22 @@
             // 
             this.bunifuTransition1.AnimationType = BunifuAnimatorNS.AnimationType.Mosaic;
             this.bunifuTransition1.Cursor = null;
-            animation4.AnimateOnlyDifferences = true;
-            animation4.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.BlindCoeff")));
-            animation4.LeafCoeff = 0F;
-            animation4.MaxTime = 1F;
-            animation4.MinTime = 0F;
-            animation4.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.MosaicCoeff")));
-            animation4.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation4.MosaicShift")));
-            animation4.MosaicSize = 20;
-            animation4.Padding = new System.Windows.Forms.Padding(30);
-            animation4.RotateCoeff = 0F;
-            animation4.RotateLimit = 0F;
-            animation4.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.ScaleCoeff")));
-            animation4.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.SlideCoeff")));
-            animation4.TimeCoeff = 0F;
-            animation4.TransparencyCoeff = 0F;
-            this.bunifuTransition1.DefaultAnimation = animation4;
+            animation1.AnimateOnlyDifferences = true;
+            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
+            animation1.LeafCoeff = 0F;
+            animation1.MaxTime = 1F;
+            animation1.MinTime = 0F;
+            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
+            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
+            animation1.MosaicSize = 20;
+            animation1.Padding = new System.Windows.Forms.Padding(30);
+            animation1.RotateCoeff = 0F;
+            animation1.RotateLimit = 0F;
+            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
+            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
+            animation1.TimeCoeff = 0F;
+            animation1.TransparencyCoeff = 0F;
+            this.bunifuTransition1.DefaultAnimation = animation1;
             this.bunifuTransition1.MaxAnimationTime = 3000;
             // 
             // panelCenter
@@ -323,33 +283,26 @@
             this.panelCenter.Size = new System.Drawing.Size(456, 422);
             this.panelCenter.TabIndex = 11;
             // 
-            // btnCheckInternet
+            // txtPassword
             // 
-            this.btnCheckInternet.ActiveBorderThickness = 1;
-            this.btnCheckInternet.ActiveCornerRadius = 20;
-            this.btnCheckInternet.ActiveFillColor = System.Drawing.Color.SeaGreen;
-            this.btnCheckInternet.ActiveForecolor = System.Drawing.Color.White;
-            this.btnCheckInternet.ActiveLineColor = System.Drawing.Color.SeaGreen;
-            this.btnCheckInternet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.btnCheckInternet.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCheckInternet.BackgroundImage")));
-            this.btnCheckInternet.ButtonText = "Al parecer no está conectado a internet, haga clic aquí para verificar nuevamente" +
-    "";
-            this.btnCheckInternet.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuTransition1.SetDecoration(this.btnCheckInternet, BunifuAnimatorNS.DecorationType.None);
-            this.btnCheckInternet.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheckInternet.ForeColor = System.Drawing.Color.SeaGreen;
-            this.btnCheckInternet.IdleBorderThickness = 1;
-            this.btnCheckInternet.IdleCornerRadius = 20;
-            this.btnCheckInternet.IdleFillColor = System.Drawing.Color.White;
-            this.btnCheckInternet.IdleForecolor = System.Drawing.Color.SeaGreen;
-            this.btnCheckInternet.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btnCheckInternet.Location = new System.Drawing.Point(12, 250);
-            this.btnCheckInternet.Margin = new System.Windows.Forms.Padding(5);
-            this.btnCheckInternet.Name = "btnCheckInternet";
-            this.btnCheckInternet.Size = new System.Drawing.Size(432, 55);
-            this.btnCheckInternet.TabIndex = 13;
-            this.btnCheckInternet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnCheckInternet.Click += new System.EventHandler(this.btnCheckInternet_Click);
+            this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.bunifuTransition1.SetDecoration(this.txtPassword, BunifuAnimatorNS.DecorationType.None);
+            this.txtPassword.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.txtPassword.ForeColor = System.Drawing.Color.Silver;
+            this.txtPassword.HintForeColor = System.Drawing.Color.Empty;
+            this.txtPassword.HintText = "";
+            this.txtPassword.isPassword = false;
+            this.txtPassword.LineFocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.txtPassword.LineIdleColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.txtPassword.LineMouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.txtPassword.LineThickness = 3;
+            this.txtPassword.Location = new System.Drawing.Point(54, 187);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(358, 44);
+            this.txtPassword.TabIndex = 14;
+            this.txtPassword.Text = "Contraseña";
+            this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // txtNick
             // 
@@ -382,27 +335,75 @@
             // bunifuElipse4
             // 
             this.bunifuElipse4.ElipseRadius = 5;
+            this.bunifuElipse4.TargetControl = this;
             // 
-            // txtPassword
+            // btnCheckInternet
             // 
-            this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.bunifuTransition1.SetDecoration(this.txtPassword, BunifuAnimatorNS.DecorationType.None);
-            this.txtPassword.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.txtPassword.ForeColor = System.Drawing.Color.Silver;
-            this.txtPassword.HintForeColor = System.Drawing.Color.Empty;
-            this.txtPassword.HintText = "";
-            this.txtPassword.isPassword = false;
-            this.txtPassword.LineFocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.txtPassword.LineIdleColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.txtPassword.LineMouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.txtPassword.LineThickness = 3;
-            this.txtPassword.Location = new System.Drawing.Point(54, 187);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(358, 44);
-            this.txtPassword.TabIndex = 14;
-            this.txtPassword.Text = "Contraseña";
-            this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnCheckInternet.ActiveBorderThickness = 1;
+            this.btnCheckInternet.ActiveCornerRadius = 20;
+            this.btnCheckInternet.ActiveFillColor = System.Drawing.Color.SeaGreen;
+            this.btnCheckInternet.ActiveForecolor = System.Drawing.Color.White;
+            this.btnCheckInternet.ActiveLineColor = System.Drawing.Color.SeaGreen;
+            this.btnCheckInternet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnCheckInternet.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCheckInternet.BackgroundImage")));
+            this.btnCheckInternet.ButtonText = "Al parecer no está conectado a internet, haga clic aquí para verificar nuevamente" +
+    "";
+            this.btnCheckInternet.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuTransition1.SetDecoration(this.btnCheckInternet, BunifuAnimatorNS.DecorationType.None);
+            this.btnCheckInternet.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCheckInternet.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btnCheckInternet.IdleBorderThickness = 1;
+            this.btnCheckInternet.IdleCornerRadius = 20;
+            this.btnCheckInternet.IdleFillColor = System.Drawing.Color.White;
+            this.btnCheckInternet.IdleForecolor = System.Drawing.Color.SeaGreen;
+            this.btnCheckInternet.IdleLineColor = System.Drawing.Color.SeaGreen;
+            this.btnCheckInternet.Location = new System.Drawing.Point(12, 250);
+            this.btnCheckInternet.Margin = new System.Windows.Forms.Padding(5);
+            this.btnCheckInternet.Name = "btnCheckInternet";
+            this.btnCheckInternet.Size = new System.Drawing.Size(432, 55);
+            this.btnCheckInternet.TabIndex = 13;
+            this.btnCheckInternet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnCheckInternet.Click += new System.EventHandler(this.btnCheckInternet_Click);
+            // 
+            // btnCerrar
+            // 
+            this.btnCerrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.bunifuTransition1.SetDecoration(this.btnCerrar, BunifuAnimatorNS.DecorationType.None);
+            this.btnCerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrar.Image")));
+            this.btnCerrar.ImageActive = null;
+            this.btnCerrar.Location = new System.Drawing.Point(419, 11);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(25, 25);
+            this.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnCerrar.TabIndex = 3;
+            this.btnCerrar.TabStop = false;
+            this.btnCerrar.Zoom = 20;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.bunifuTransition1.SetDecoration(this.btnClose, BunifuAnimatorNS.DecorationType.None);
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.ImageActive = null;
+            this.btnClose.Location = new System.Drawing.Point(815, 13);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(25, 25);
+            this.btnClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnClose.TabIndex = 2;
+            this.btnClose.TabStop = false;
+            this.btnClose.Zoom = 20;
+            // 
+            // pictureBox1
+            // 
+            this.bunifuTransition1.SetDecoration(this.pictureBox1, BunifuAnimatorNS.DecorationType.None);
+            this.pictureBox1.Image = global::Animus.Properties.Resources.home_white;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 16);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // HomeRegistry
             // 
@@ -421,11 +422,11 @@
             this.Load += new System.EventHandler(this.LoginAnimus_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
+            this.panelCenter.ResumeLayout(false);
+            this.panelCenter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panelCenter.ResumeLayout(false);
-            this.panelCenter.PerformLayout();
             this.ResumeLayout(false);
 
         }

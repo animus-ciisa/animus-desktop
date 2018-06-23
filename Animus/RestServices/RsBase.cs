@@ -29,6 +29,7 @@ namespace Animus.RestServices
                 if (useToken)
                 {
                     string lastToken = new DaSesion().GetActiveSession().token;
+                    Console.WriteLine("Token: " + lastToken);
                     webRequest.Headers.Add("Authorization", "bearer " + lastToken);
                 }
                 byte[] byteArray = Encoding.UTF8.GetBytes(jsonParams);

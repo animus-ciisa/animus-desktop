@@ -71,5 +71,12 @@ namespace Animus
             camerasAndMonitors1.BringToFront(); // al hacer click muestrame camaras y monitores
             buninfuMenu.ShowSync(camerasAndMonitors1);
         }
+
+        private void btnHabitantes_Click(object sender, EventArgs e)
+        {
+            listHabitant1.Visible = false;
+            listHabitant1.BringToFront();
+            buninfuMenu.ShowSync(listHabitant1);
+        }
     }
 }

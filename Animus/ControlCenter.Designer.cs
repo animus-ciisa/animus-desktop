@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            BunifuAnimatorNS.Animation animation1 = new BunifuAnimatorNS.Animation();
+            BunifuAnimatorNS.Animation animation2 = new BunifuAnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlCenter));
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.panelMenu = new System.Windows.Forms.Panel();
             this.bunifuFlatButton3 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.bunifuFlatButton4 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnCamaras = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.bunifuFlatButton2 = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.btnHabitantes = new Bunifu.Framework.UI.BunifuFlatButton();
             this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.btnClose = new Bunifu.Framework.UI.BunifuImageButton();
@@ -44,8 +44,9 @@
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.buninfuMenu = new BunifuAnimatorNS.BunifuTransition(this.components);
-            this.alarms1 = new Animus.Alarms();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.alarms1 = new Animus.Alarms();
+            this.listHabitant1 = new Animus.ListHabitant();
             this.panelMenu.SuspendLayout();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
@@ -64,7 +65,7 @@
             this.panelMenu.Controls.Add(this.bunifuFlatButton3);
             this.panelMenu.Controls.Add(this.bunifuFlatButton4);
             this.panelMenu.Controls.Add(this.btnCamaras);
-            this.panelMenu.Controls.Add(this.bunifuFlatButton2);
+            this.panelMenu.Controls.Add(this.btnHabitantes);
             this.panelMenu.Controls.Add(this.bunifuFlatButton1);
             this.buninfuMenu.SetDecoration(this.panelMenu, BunifuAnimatorNS.DecorationType.None);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
@@ -179,45 +180,46 @@
             this.btnCamaras.TextFont = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCamaras.Click += new System.EventHandler(this.btnCamaras_Click);
             // 
-            // bunifuFlatButton2
+            // btnHabitantes
             // 
-            this.bunifuFlatButton2.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.bunifuFlatButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.bunifuFlatButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bunifuFlatButton2.BorderRadius = 0;
-            this.bunifuFlatButton2.ButtonText = "Habitantes";
-            this.bunifuFlatButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buninfuMenu.SetDecoration(this.bunifuFlatButton2, BunifuAnimatorNS.DecorationType.None);
-            this.bunifuFlatButton2.DisabledColor = System.Drawing.Color.Gray;
-            this.bunifuFlatButton2.Iconcolor = System.Drawing.Color.Transparent;
-            this.bunifuFlatButton2.Iconimage = ((System.Drawing.Image)(resources.GetObject("bunifuFlatButton2.Iconimage")));
-            this.bunifuFlatButton2.Iconimage_right = null;
-            this.bunifuFlatButton2.Iconimage_right_Selected = null;
-            this.bunifuFlatButton2.Iconimage_Selected = null;
-            this.bunifuFlatButton2.IconMarginLeft = 0;
-            this.bunifuFlatButton2.IconMarginRight = 0;
-            this.bunifuFlatButton2.IconRightVisible = true;
-            this.bunifuFlatButton2.IconRightZoom = 0D;
-            this.bunifuFlatButton2.IconVisible = true;
-            this.bunifuFlatButton2.IconZoom = 60D;
-            this.bunifuFlatButton2.IsTab = true;
-            this.bunifuFlatButton2.Location = new System.Drawing.Point(0, 125);
-            this.bunifuFlatButton2.Name = "bunifuFlatButton2";
-            this.bunifuFlatButton2.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.bunifuFlatButton2.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.bunifuFlatButton2.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.bunifuFlatButton2.selected = false;
-            this.bunifuFlatButton2.Size = new System.Drawing.Size(175, 48);
-            this.bunifuFlatButton2.TabIndex = 2;
-            this.bunifuFlatButton2.Text = "Habitantes";
-            this.bunifuFlatButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bunifuFlatButton2.Textcolor = System.Drawing.Color.Silver;
-            this.bunifuFlatButton2.TextFont = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHabitantes.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.btnHabitantes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnHabitantes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnHabitantes.BorderRadius = 0;
+            this.btnHabitantes.ButtonText = "Habitantes";
+            this.btnHabitantes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buninfuMenu.SetDecoration(this.btnHabitantes, BunifuAnimatorNS.DecorationType.None);
+            this.btnHabitantes.DisabledColor = System.Drawing.Color.Gray;
+            this.btnHabitantes.Iconcolor = System.Drawing.Color.Transparent;
+            this.btnHabitantes.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnHabitantes.Iconimage")));
+            this.btnHabitantes.Iconimage_right = null;
+            this.btnHabitantes.Iconimage_right_Selected = null;
+            this.btnHabitantes.Iconimage_Selected = null;
+            this.btnHabitantes.IconMarginLeft = 0;
+            this.btnHabitantes.IconMarginRight = 0;
+            this.btnHabitantes.IconRightVisible = true;
+            this.btnHabitantes.IconRightZoom = 0D;
+            this.btnHabitantes.IconVisible = true;
+            this.btnHabitantes.IconZoom = 60D;
+            this.btnHabitantes.IsTab = true;
+            this.btnHabitantes.Location = new System.Drawing.Point(0, 125);
+            this.btnHabitantes.Name = "btnHabitantes";
+            this.btnHabitantes.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnHabitantes.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnHabitantes.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.btnHabitantes.selected = false;
+            this.btnHabitantes.Size = new System.Drawing.Size(175, 48);
+            this.btnHabitantes.TabIndex = 2;
+            this.btnHabitantes.Text = "Habitantes";
+            this.btnHabitantes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHabitantes.Textcolor = System.Drawing.Color.Silver;
+            this.btnHabitantes.TextFont = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHabitantes.Click += new System.EventHandler(this.btnHabitantes_Click);
             // 
             // bunifuFlatButton1
             // 
             this.bunifuFlatButton1.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.bunifuFlatButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.bunifuFlatButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
             this.bunifuFlatButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bunifuFlatButton1.BorderRadius = 0;
             this.bunifuFlatButton1.ButtonText = "Alarmas";
@@ -312,22 +314,22 @@
             // 
             this.buninfuMenu.AnimationType = BunifuAnimatorNS.AnimationType.Mosaic;
             this.buninfuMenu.Cursor = null;
-            animation1.AnimateOnlyDifferences = true;
-            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
-            animation1.LeafCoeff = 0F;
-            animation1.MaxTime = 1F;
-            animation1.MinTime = 0F;
-            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
-            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
-            animation1.MosaicSize = 20;
-            animation1.Padding = new System.Windows.Forms.Padding(30);
-            animation1.RotateCoeff = 0F;
-            animation1.RotateLimit = 0F;
-            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
-            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
-            animation1.TimeCoeff = 0F;
-            animation1.TransparencyCoeff = 0F;
-            this.buninfuMenu.DefaultAnimation = animation1;
+            animation2.AnimateOnlyDifferences = true;
+            animation2.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.BlindCoeff")));
+            animation2.LeafCoeff = 0F;
+            animation2.MaxTime = 1F;
+            animation2.MinTime = 0F;
+            animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
+            animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
+            animation2.MosaicSize = 20;
+            animation2.Padding = new System.Windows.Forms.Padding(30);
+            animation2.RotateCoeff = 0F;
+            animation2.RotateLimit = 0F;
+            animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));
+            animation2.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.SlideCoeff")));
+            animation2.TimeCoeff = 0F;
+            animation2.TransparencyCoeff = 0F;
+            this.buninfuMenu.DefaultAnimation = animation2;
             this.buninfuMenu.MaxAnimationTime = 500;
             // 
             // alarms1
@@ -340,12 +342,22 @@
             this.alarms1.Size = new System.Drawing.Size(675, 504);
             this.alarms1.TabIndex = 2;
             // 
+            // listHabitant1
+            // 
+            this.listHabitant1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(46)))), ((int)(((byte)(59)))));
+            this.buninfuMenu.SetDecoration(this.listHabitant1, BunifuAnimatorNS.DecorationType.None);
+            this.listHabitant1.Location = new System.Drawing.Point(175, 46);
+            this.listHabitant1.Name = "listHabitant1";
+            this.listHabitant1.Size = new System.Drawing.Size(672, 504);
+            this.listHabitant1.TabIndex = 3;
+            // 
             // ControlCenter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(46)))), ((int)(((byte)(59)))));
             this.ClientSize = new System.Drawing.Size(850, 550);
+            this.Controls.Add(this.listHabitant1);
             this.Controls.Add(this.alarms1);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelHeader);
@@ -376,11 +388,12 @@
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton4;
         private Bunifu.Framework.UI.BunifuFlatButton btnCamaras;
-        private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton2;
+        private Bunifu.Framework.UI.BunifuFlatButton btnHabitantes;
         private Alarms alarms1;
         private CamerasAndMonitors camerasAndMonitors1;
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton3;
         private BunifuAnimatorNS.BunifuTransition buninfuMenu;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private ListHabitant listHabitant1;
     }
 }
