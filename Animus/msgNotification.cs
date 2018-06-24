@@ -12,23 +12,42 @@ namespace Animus
 {
     public partial class msgNotification : Form
     {
-        public msgNotification()
+        public msgNotification(string nameForm, string msg)
         {
             InitializeComponent();
 
-            if (HomeRegistry.nameForm != null && HomeRegistry.nameForm != "")
+            //if (HomeRegistry.nameForm != null && HomeRegistry.nameForm != "")
+            //{
+            //    this.pictureBox2.Location = new System.Drawing.Point(5, 47);
+            //    picOK.Visible = false;
+            //    if (HomeRegistry.msgForm != "" && HomeRegistry.msgForm != null)
+            //    {
+            //        msg = HomeRegistry.msgForm;
+            //        lblMsge.Text = msg;
+            //        HomeRegistry.nameForm = string.Empty;
+            //        HomeRegistry.nameForm = string.Empty;
+            //    }
+
+            //}
+
+            if (nameForm != "" && msg != "")
             {
                 this.pictureBox2.Location = new System.Drawing.Point(5, 47);
-                picOK.Visible = false;
-                if (HomeRegistry.msgForm != "" && HomeRegistry.msgForm != null)
+                if (nameForm == "RegisterHabitant")
                 {
-                    string msg = HomeRegistry.msgForm;
-                    lblMsge.Text = msg;
-                    HomeRegistry.nameForm = string.Empty;
-                    HomeRegistry.nameForm = string.Empty;
+                    if (msg.Contains("OK"))
+                    {
+                        picOK.Visible = false;
+                        this.picOK.Location = new System.Drawing.Point(5, 47);
+                    }
                 }
-
+                else
+                {
+                    pictureBox2.Visible = false;
+                }
+                lblMsge.Text = msg;
             }
+
             /*if (HomeAuthentication.nameForm != null && HomeAuthentication.nameForm != "")
             {
 

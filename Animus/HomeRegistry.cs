@@ -23,14 +23,15 @@ namespace Animus
         public static string imagePath = "", nameArchive = "";
         public static string imageDefault = ConfigurationManager.AppSettings["imageDefault"];
         public static string pathImageDefault = ConfigurationManager.AppSettings["pathImage"];
-        public static string nameForm = "";
+        public string nameForm = "";
         public static string msgForm = "";
 
 
-        BrHome brHome = new BrHome();       
+        BrHome brHome = new BrHome();
 
         public HomeRegistry()
         {
+            nameForm = "HomeRegister";
             InitializeComponent();
             this.ChechInternet();
         }
@@ -88,7 +89,7 @@ namespace Animus
             {
                 nameForm = "LoginAnimus";
                 msgForm = msg;
-                msgNotification ms = new msgNotification();
+                msgNotification ms = new msgNotification(nameForm, msg);
                 ms.ShowDialog();
                 return;
             }
@@ -98,9 +99,8 @@ namespace Animus
             {
                 txtCorreo.Text = string.Empty;
                 txtNick.Text = string.Empty;
-                nameForm = "LoginAnimus";
                 msgForm = "La cuenta de correo existe, debe ingresar por la opción ya tengo una cuenta.";
-                msgNotification ms = new msgNotification();
+                msgNotification ms = new msgNotification(nameForm, msgForm);
                 ms.ShowDialog();
                 return;
             }
@@ -140,9 +140,9 @@ namespace Animus
                     Boolean exists = this.ValidateExistsEmail();
                     if (exists == true)
                     {
-                        nameForm = "LoginAnimus";
+
                         msgForm = "La cuenta de correo existe, debe ingresar por la opción ya tengo una cuenta.";
-                        msgNotification ms = new msgNotification();
+                        msgNotification ms = new msgNotification(nameForm, msgForm);
                         ms.ShowDialog();
                         return;
                     }
@@ -151,9 +151,9 @@ namespace Animus
                 {
                     txtCorreo.Text = string.Empty;
                     txtNick.Text = string.Empty;
-                    nameForm = "LoginAnimus";
+              
                     msgForm = "El campo correo electrónico no tiene un formato correcto.";
-                    msgNotification ms = new msgNotification();
+                    msgNotification ms = new msgNotification(nameForm, msgForm);
                     ms.ShowDialog();
                 }
             }

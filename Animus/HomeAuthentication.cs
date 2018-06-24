@@ -17,6 +17,7 @@ namespace Animus
     {
         private CoHome activeHome;
         BrHome brHome = new BrHome();
+        string msg = string.Empty;
 
         public HomeAuthentication(CoHome home)
         {
@@ -37,7 +38,11 @@ namespace Animus
 
                 if (!internetStatus)
                 {
-                    MessageBox.Show("No existe conexión a internet, intentelo más tarde");
+                    //MessageBox.Show("No existe conexión a internet, intentelo más tarde");
+
+                    msg = "No existe conexión a internet, intentelo más tarde.";
+                    msgNotification c = new msgNotification("homeAuthentication", msg);
+                    c.ShowDialog();
                     return;
                 }
 
@@ -57,7 +62,10 @@ namespace Animus
                 }
                 else
                 {
-                    MessageBox.Show("Usuario o Password Incorrecto");
+                    //MessageBox.Show("Usuario o Password Incorrecto");
+                    msg = "Usuario o Password Incorrecto";
+                    msgNotification c = new msgNotification("homeAuthentication", msg);
+                    c.ShowDialog();
                     return;
                 }
             }
@@ -72,17 +80,23 @@ namespace Animus
 
         private void PasswordAnimus_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (txtPassword.Text.Trim() != "")
+            {
+
                 btnSaveHome.Enabled = true;
+                if (e.KeyChar == (char)Keys.Enter)//si preciona el enter llamar al metodo del boton inciar session
+                    btnSaveHome_Click(null, null);
+
+            }
             else
-                btnSaveHome.Enabled = false;
+            { btnSaveHome.Enabled = false; }
         }
-        
+
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
@@ -93,7 +107,7 @@ namespace Animus
 
         private void bunifuCustomLabel3_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

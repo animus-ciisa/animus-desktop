@@ -15,19 +15,26 @@ namespace Animus
 {
     public partial class ControlCenter : Form
     {
-        private CoHome activeHome;
+        public CoHome activeHome;
         private CoSesion activeSession;
         private BrBatch brBatch;
+        //   public static CoHome homecontrol;
 
         public ControlCenter(CoHome home, CoSesion session)
         {
+            this.activeHome = home;
+
             InitializeComponent();
+
+
             alarms1.BringToFront();
             this.brBatch = new BrBatch();
             this.brBatch.StartProcess();
-            this.activeHome = home;
+
             this.activeSession = session;
         }
+
+
 
         private void btnClose_Click(object sender, EventArgs e)
         {

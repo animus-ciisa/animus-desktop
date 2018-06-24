@@ -1,4 +1,5 @@
-﻿namespace Animus
+﻿using Animus.Common;
+namespace Animus
 {
     partial class ControlCenter
     {
@@ -28,6 +29,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            CoHome home = new CoHome();
+
+            home = this.activeHome;//passing home a opciones para grabar
+
             this.components = new System.ComponentModel.Container();
             BunifuAnimatorNS.Animation animation2 = new BunifuAnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlCenter));
@@ -46,7 +51,8 @@
             this.buninfuMenu = new BunifuAnimatorNS.BunifuTransition(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.alarms1 = new Animus.Alarms();
-            this.listHabitant1 = new Animus.ListHabitant();
+            this.listHabitant1 = new Animus.ListHabitant(home);//pasar objeto
+
             this.panelMenu.SuspendLayout();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();

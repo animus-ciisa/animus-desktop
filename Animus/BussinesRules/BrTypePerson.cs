@@ -23,5 +23,9 @@ namespace Animus.BussinesRules
             return typePerson;
 
         }
+        public int getIntType(string name)
+        {
+            return this.daTypePerson.getIntType(name);
+        }
     }
 }

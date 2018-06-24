@@ -39,13 +39,16 @@
             this.txtNombre = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.txtApellidos = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.txtFECHA = new Bunifu.Framework.UI.BunifuDatepicker();
-            this.txtFechaNacimiento = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.comboTIPOPERSONA = new Bunifu.Framework.UI.BunifuDropdown();
             this.bunifuElipse2 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.bunifuElipse3 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.btnContinuar = new Bunifu.Framework.UI.BunifuFlatButton();
             this.bunifuElipse4 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
+            this.txtFechaNacimiento = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.bunifuMaterialTextbox1 = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.bunifuCustomLabel2 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
@@ -77,6 +80,7 @@
             this.btnCerrar.TabIndex = 3;
             this.btnCerrar.TabStop = false;
             this.btnCerrar.Zoom = 20;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // btnClose
             // 
@@ -170,39 +174,18 @@
             this.txtFECHA.TabIndex = 6;
             this.txtFECHA.Value = new System.DateTime(2018, 6, 22, 21, 34, 20, 330);
             // 
-            // txtFechaNacimiento
-            // 
-            this.txtFechaNacimiento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.txtFechaNacimiento.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtFechaNacimiento.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.txtFechaNacimiento.ForeColor = System.Drawing.Color.Silver;
-            this.txtFechaNacimiento.HintForeColor = System.Drawing.Color.Silver;
-            this.txtFechaNacimiento.HintText = "";
-            this.txtFechaNacimiento.isPassword = false;
-            this.txtFechaNacimiento.LineFocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.txtFechaNacimiento.LineIdleColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.txtFechaNacimiento.LineMouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.txtFechaNacimiento.LineThickness = 3;
-            this.txtFechaNacimiento.Location = new System.Drawing.Point(42, 245);
-            this.txtFechaNacimiento.Margin = new System.Windows.Forms.Padding(4);
-            this.txtFechaNacimiento.Name = "txtFechaNacimiento";
-            this.txtFechaNacimiento.Size = new System.Drawing.Size(154, 44);
-            this.txtFechaNacimiento.TabIndex = 7;
-            this.txtFechaNacimiento.Text = "Fecha Nacimiento";
-            this.txtFechaNacimiento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
             // comboTIPOPERSONA
             // 
             this.comboTIPOPERSONA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
             this.comboTIPOPERSONA.BorderRadius = 3;
             this.comboTIPOPERSONA.ForeColor = System.Drawing.Color.White;
             this.comboTIPOPERSONA.Items = new string[0];
-            this.comboTIPOPERSONA.Location = new System.Drawing.Point(42, 327);
+            this.comboTIPOPERSONA.Location = new System.Drawing.Point(194, 327);
             this.comboTIPOPERSONA.Name = "comboTIPOPERSONA";
             this.comboTIPOPERSONA.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
             this.comboTIPOPERSONA.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(100)))), ((int)(((byte)(254)))));
             this.comboTIPOPERSONA.selectedIndex = -1;
-            this.comboTIPOPERSONA.Size = new System.Drawing.Size(358, 35);
+            this.comboTIPOPERSONA.Size = new System.Drawing.Size(206, 35);
             this.comboTIPOPERSONA.TabIndex = 8;
             // 
             // bunifuElipse2
@@ -264,12 +247,79 @@
             this.bunifuDragControl1.TargetControl = this.panelHeader;
             this.bunifuDragControl1.Vertical = true;
             // 
+            // txtFechaNacimiento
+            // 
+            this.txtFechaNacimiento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.txtFechaNacimiento.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtFechaNacimiento.Enabled = false;
+            this.txtFechaNacimiento.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.txtFechaNacimiento.ForeColor = System.Drawing.Color.Silver;
+            this.txtFechaNacimiento.HintForeColor = System.Drawing.Color.Silver;
+            this.txtFechaNacimiento.HintText = "";
+            this.txtFechaNacimiento.isPassword = false;
+            this.txtFechaNacimiento.LineFocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.txtFechaNacimiento.LineIdleColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.txtFechaNacimiento.LineMouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.txtFechaNacimiento.LineThickness = 3;
+            this.txtFechaNacimiento.Location = new System.Drawing.Point(42, 244);
+            this.txtFechaNacimiento.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFechaNacimiento.Name = "txtFechaNacimiento";
+            this.txtFechaNacimiento.Size = new System.Drawing.Size(154, 44);
+            this.txtFechaNacimiento.TabIndex = 7;
+            this.txtFechaNacimiento.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // bunifuMaterialTextbox1
+            // 
+            this.bunifuMaterialTextbox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.bunifuMaterialTextbox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.bunifuMaterialTextbox1.Enabled = false;
+            this.bunifuMaterialTextbox1.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.bunifuMaterialTextbox1.ForeColor = System.Drawing.Color.Silver;
+            this.bunifuMaterialTextbox1.HintForeColor = System.Drawing.Color.Silver;
+            this.bunifuMaterialTextbox1.HintText = "";
+            this.bunifuMaterialTextbox1.isPassword = false;
+            this.bunifuMaterialTextbox1.LineFocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.bunifuMaterialTextbox1.LineIdleColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.bunifuMaterialTextbox1.LineMouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.bunifuMaterialTextbox1.LineThickness = 3;
+            this.bunifuMaterialTextbox1.Location = new System.Drawing.Point(42, 317);
+            this.bunifuMaterialTextbox1.Margin = new System.Windows.Forms.Padding(4);
+            this.bunifuMaterialTextbox1.Name = "bunifuMaterialTextbox1";
+            this.bunifuMaterialTextbox1.Size = new System.Drawing.Size(154, 44);
+            this.bunifuMaterialTextbox1.TabIndex = 13;
+            this.bunifuMaterialTextbox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // bunifuCustomLabel2
+            // 
+            this.bunifuCustomLabel2.AutoSize = true;
+            this.bunifuCustomLabel2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuCustomLabel2.ForeColor = System.Drawing.Color.Silver;
+            this.bunifuCustomLabel2.Location = new System.Drawing.Point(45, 260);
+            this.bunifuCustomLabel2.Name = "bunifuCustomLabel2";
+            this.bunifuCustomLabel2.Size = new System.Drawing.Size(148, 17);
+            this.bunifuCustomLabel2.TabIndex = 14;
+            this.bunifuCustomLabel2.Text = "Fecha de Nacimiento";
+            // 
+            // bunifuCustomLabel3
+            // 
+            this.bunifuCustomLabel3.AutoSize = true;
+            this.bunifuCustomLabel3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuCustomLabel3.ForeColor = System.Drawing.Color.Silver;
+            this.bunifuCustomLabel3.Location = new System.Drawing.Point(47, 334);
+            this.bunifuCustomLabel3.Name = "bunifuCustomLabel3";
+            this.bunifuCustomLabel3.Size = new System.Drawing.Size(110, 17);
+            this.bunifuCustomLabel3.TabIndex = 15;
+            this.bunifuCustomLabel3.Text = "Tipo de Persona";
+            // 
             // RegisterHabitant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(456, 468);
+            this.Controls.Add(this.bunifuCustomLabel3);
+            this.Controls.Add(this.bunifuCustomLabel2);
+            this.Controls.Add(this.bunifuMaterialTextbox1);
             this.Controls.Add(this.btnContinuar);
             this.Controls.Add(this.comboTIPOPERSONA);
             this.Controls.Add(this.txtFechaNacimiento);
@@ -287,6 +337,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -300,7 +351,6 @@
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtNombre;
         private Bunifu.Framework.UI.BunifuDropdown comboTIPOPERSONA;
-        private Bunifu.Framework.UI.BunifuMaterialTextbox txtFechaNacimiento;
         private Bunifu.Framework.UI.BunifuDatepicker txtFECHA;
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtApellidos;
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse2;
@@ -308,5 +358,9 @@
         private Bunifu.Framework.UI.BunifuFlatButton btnContinuar;
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse4;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox bunifuMaterialTextbox1;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox txtFechaNacimiento;
+        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel3;
+        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel2;
     }
 }

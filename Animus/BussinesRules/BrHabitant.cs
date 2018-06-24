@@ -1,4 +1,5 @@
 ﻿using Animus.Common;
+using Animus.DataAccess;
 using Animus.RestServices;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,12 @@ namespace Animus.BussinesRules
     class BrHabitant
     {
         private RsHabitant rs;
+        DaHabitant daHabitant;
 
         public BrHabitant()
         {
             rs = new RsHabitant();
+            daHabitant = new DaHabitant();
         }
         public CoHabitant Registry(CoHabitant habitant, out Boolean internetStatus)
         {
@@ -27,6 +30,11 @@ namespace Animus.BussinesRules
             else
                 return habitant;
 
+        }
+
+        public void Save(CoHabitant habitant)
+        {
+            this.daHabitant.Save(habitant);
         }
     }
 }

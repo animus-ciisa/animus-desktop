@@ -29,5 +29,20 @@ namespace Animus.DataAccess
             }
             return typeperson;
         }
+
+        internal int getIntType(string name)
+        {
+            int res = 0;
+            var query = "SELECT * FROM TypePerson WHERE name = ?;";
+            DbParameter[] parametersSelect = {
+                new DbParameter("name", name)
+             };
+            var result = DbContext.Select(query, parametersSelect);
+            if (result.Count() > 0)
+            {
+                res = Convert.ToInt32(result[0]["id"].ToString());
+            }
+            return res;
+        }
     }
 }
