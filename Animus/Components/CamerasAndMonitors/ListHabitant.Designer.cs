@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.btnAgregar = new Bunifu.Framework.UI.BunifuFlatButton();
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.panelCenter = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // btnAgregar
@@ -75,11 +76,20 @@
             this.bunifuElipse1.ElipseRadius = 5;
             this.bunifuElipse1.TargetControl = this.btnAgregar;
             // 
+            // panelCenter
+            // 
+            this.panelCenter.AutoScroll = true;
+            this.panelCenter.Location = new System.Drawing.Point(86, 119);
+            this.panelCenter.Name = "panelCenter";
+            this.panelCenter.Size = new System.Drawing.Size(603, 308);
+            this.panelCenter.TabIndex = 12;
+            // 
             // ListHabitant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(46)))), ((int)(((byte)(59)))));
+            this.Controls.Add(this.panelCenter);
             this.Controls.Add(this.btnAgregar);
             this.Name = "ListHabitant";
             this.Size = new System.Drawing.Size(784, 504);
@@ -91,5 +101,6 @@
 
         private Bunifu.Framework.UI.BunifuFlatButton btnAgregar;
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
+        private System.Windows.Forms.Panel panelCenter;
     }
 }

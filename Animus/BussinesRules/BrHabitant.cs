@@ -31,10 +31,24 @@ namespace Animus.BussinesRules
                 return habitant;
 
         }
-
+        public List<CoHabitant> GetAll()
+        {
+            List<CoHabitant> habitan = this.daHabitant.GetAll();
+            return habitan;
+        }
         public void Save(CoHabitant habitant)
         {
             this.daHabitant.Save(habitant);
+        }
+
+        public void Delete(int id)
+        {
+            this.daHabitant.Delete(id);
+        }
+
+        public CoHabitant GetId(int id)
+        {
+            return this.daHabitant.GetId(id);
         }
     }
 }

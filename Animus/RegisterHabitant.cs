@@ -94,8 +94,9 @@ namespace Animus
 
             cohabitant.name = name;
             cohabitant.lastname = lastname;
-            cohabitant.birthdate = brithday;
+            cohabitant.birthdate = brithday.ToString("yyyy-MM-dd");
             cohabitant.idtypepeperson = tipopersona;
+
 
             cohabitant = brhabitant.Registry(cohabitant, out internetStatus);
             if (cohabitant != null && cohabitant.idhabitant != 0)

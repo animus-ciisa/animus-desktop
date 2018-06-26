@@ -300,8 +300,10 @@
     <Content Include="Images\Application\close.ico" />
     <Content Include="Images\Application\close1.png" />
     <Content Include="Images\Application\close_blue.ico" />
+    <Content Include="Images\Application\delete.png" />
     <Content Include="Images\Application\domo.jpg" />
     <Content Include="Images\Application\domotic.png" />
+    <Content Include="Images\Application\edit.png" />
     <Content Include="Images\Application\email.png" />
     <Content Include="Images\Application\excla.png" />
     <Content Include="Images\Application\exclamation.jpg" />

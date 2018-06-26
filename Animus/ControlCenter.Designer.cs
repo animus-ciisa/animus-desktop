@@ -29,10 +29,6 @@ namespace Animus
         /// </summary>
         private void InitializeComponent()
         {
-            CoHome home = new CoHome();
-
-            home = this.activeHome;//passing home a opciones para grabar
-
             this.components = new System.ComponentModel.Container();
             BunifuAnimatorNS.Animation animation2 = new BunifuAnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlCenter));
@@ -51,7 +47,7 @@ namespace Animus
             this.buninfuMenu = new BunifuAnimatorNS.BunifuTransition(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.alarms1 = new Animus.Alarms();
-            this.listHabitant1 = new Animus.ListHabitant(home);//pasar objeto
+            this.listHabitant1 = new Animus.ListHabitant();
 
             this.panelMenu.SuspendLayout();
             this.panelHeader.SuspendLayout();

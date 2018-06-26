@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Animus.Common
 {
-    class CoHabitant
+    public class CoHabitant
     {
         private int _idhabitant;
         private int _idhome;
         private int _idtypepeperson;
         private string _name;
         private string _lastname;
-        private DateTime _birthdate;
-        private DateTime _registrationdate;
+        private string _birthdate;
+        private string _registrationdate;
 
 
         public int idhabitant
@@ -45,13 +45,13 @@ namespace Animus.Common
             get { return this._lastname; }
             set { this._lastname = value; }
         }
-        public DateTime birthdate
+        public string birthdate
         {
             get { return this._birthdate; }
             set { this._birthdate = value; }
         }
 
-        public DateTime registrationdate
+        public string registrationdate
         {
             get { return this._registrationdate; }
             set { this._registrationdate = value; }

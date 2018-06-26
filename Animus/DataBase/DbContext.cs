@@ -55,6 +55,27 @@ namespace Animus.DataBase
             return insertId;
         }
 
+        public static int Delete(string query, DbParameter[] parameters)
+        {
+            int insertId;
+            using (var ctx = DbContext.GetInstance())
+            {
+                using (var command = new SQLiteCommand(query, ctx))
+                {
+                    for (int i = 0; i < parameters.Length; i++)
+                    {
+                        command.Parameters.Add(new SQLiteParameter(parameters[i].field, parameters[i].value));
+                    }
+                    command.ExecuteNonQuery();
+                    command.CommandText = "select last_insert_rowid()";
+                    insertId = Convert.ToInt32(command.ExecuteScalar());
+                    command.Dispose();
+                }
+                ctx.Close();
+            }
+            return insertId;
+        }
+
         public static List<Dictionary<string, string>> Select(string query, DbParameter[] parameters = null)
         {
             List<Dictionary<string, string>> resulset = new List<Dictionary<string, string>>();
