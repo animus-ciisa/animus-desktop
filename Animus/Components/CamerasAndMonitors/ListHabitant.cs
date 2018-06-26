@@ -99,7 +99,7 @@ namespace Animus
                     bunifuCustomLabel4.Name = coHabitante.idhabitant.ToString() + "-name";//"bunifuCustomLabel4";
                     bunifuCustomLabel4.Size = new System.Drawing.Size(151, 17);
                     bunifuCustomLabel4.TabIndex = idtab;
-                    bunifuCustomLabel4.Text = coHabitante.name;
+                    bunifuCustomLabel4.Text = coHabitante.name + " " + coHabitante.lastname;
                     idtab += 1;
 
                     posname += 168;
@@ -174,6 +174,14 @@ namespace Animus
             if (name.Contains("-"))
             {
                 int id = Convert.ToInt32(name.Split('-')[0].ToString());
+                coHabitant = brHabitant.GetId(id);
+                if (coHabitant != null)
+                {
+                    ModifyHabitant m = new ModifyHabitant(coHabitant);
+                    m.ShowDialog();
+                    return;
+                }
+
             }
             // identify which button was clicked and perform necessary actions
         }

@@ -22,6 +22,7 @@ namespace Animus
             habitant = new CoHabitant();
             brHabitant = new BrHabitant();
             habitant = coHabitant;
+            //Falta cargar la foto del habitante
             InitializeComponent();
 
             lblResponsable.Text = "¿Está seguro que desea eliminar al habitante " + habitant.name + "?";
@@ -48,6 +49,11 @@ namespace Animus
 
 
 
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

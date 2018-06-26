@@ -37,7 +37,8 @@ namespace Animus
                 {
                     if (msg.Contains("OK"))
                     {
-                        picOK.Visible = false;
+                        pictureBox2.Visible = false;
+                        picOK.Visible = true;
                         this.picOK.Location = new System.Drawing.Point(5, 47);
                     }
                 }

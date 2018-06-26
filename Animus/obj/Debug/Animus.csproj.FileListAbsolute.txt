@@ -57,6 +57,7 @@ C:\Users\matias\source\repos\animus-desktop\Animus\obj\Debug\Animus.Components.C
 C:\Users\matias\source\repos\animus-desktop\Animus\bin\Debug\Microsoft.VisualStudio.DebuggerVisualizers.dll
 C:\Users\matias\source\repos\animus-desktop\Animus\bin\Debug\Emgu.CV.UI.xml
 C:\Users\matias\source\repos\animus-desktop\Animus\bin\Debug\Emgu.CV.World.xml
+C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.csprojResolveAssemblyReference.cache
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.Alarms.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.CamerasAndMonitors.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.Components.CamerasAndMonitors.CameraSelection.resources
@@ -66,6 +67,7 @@ C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.ListHabitant.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.DeleteHabitant.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.Login.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.HomeRegistry.resources
+C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.ModifyHabitant.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.msgCloseSession.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.msgNotification.resources
 C:\inetpub\wwwroot\tesis\Animus\Animus\obj\Debug\Animus.Password.resources
