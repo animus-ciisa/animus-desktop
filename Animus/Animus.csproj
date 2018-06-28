@@ -113,15 +113,19 @@
     <Compile Include="BussinesRules\BrAnimusRest.cs" />
     <Compile Include="BussinesRules\BrBatch.cs" />
     <Compile Include="BussinesRules\BrCamera.cs" />
+    <Compile Include="BussinesRules\BrDetection.cs" />
     <Compile Include="BussinesRules\BrHabitant.cs" />
     <Compile Include="BussinesRules\BrHome.cs" />
+    <Compile Include="BussinesRules\BrImage.cs" />
     <Compile Include="BussinesRules\BrSesion.cs" />
     <Compile Include="BussinesRules\BrTest.cs" />
     <Compile Include="BussinesRules\BrTypePerson.cs" />
-    <Compile Include="CamerasAndMonitors.cs">
+    <Compile Include="Common\CoFaceDetection.cs" />
+    <Compile Include="Common\CoRecognitionImages.cs" />
+    <Compile Include="Components\CamerasAndMonitors\CamerasAndMonitors.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CamerasAndMonitors.Designer.cs">
+    <Compile Include="Components\CamerasAndMonitors\CamerasAndMonitors.Designer.cs">
       <DependentUpon>CamerasAndMonitors.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\CoCamera.cs" />
@@ -136,6 +140,12 @@
     </Compile>
     <Compile Include="Components\CamerasAndMonitors\CameraSelection.Designer.cs">
       <DependentUpon>CameraSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Habitants\HabitantImagesRegistration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\Habitants\HabitantImagesRegistration.Designer.cs">
+      <DependentUpon>HabitantImagesRegistration.cs</DependentUpon>
     </Compile>
     <Compile Include="ControlCenter.cs">
       <SubType>Form</SubType>
@@ -153,16 +163,17 @@
     <Compile Include="DataAccess\DaCamera.cs" />
     <Compile Include="DataAccess\DaHabitant.cs" />
     <Compile Include="DataAccess\DaHome.cs" />
+    <Compile Include="DataAccess\DaImage.cs" />
     <Compile Include="DataAccess\DaSesion.cs" />
     <Compile Include="DataAccess\DaTest.cs" />
     <Compile Include="DataAccess\DaGenerateScript.cs" />
     <Compile Include="DataAccess\DaTypePerson.cs" />
     <Compile Include="DataBase\DbContext.cs" />
-    <Compile Include="Components\CamerasAndMonitors\ListHabitant.cs">
+    <Compile Include="Components\Habitants\Habitants.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\CamerasAndMonitors\ListHabitant.Designer.cs">
-      <DependentUpon>ListHabitant.cs</DependentUpon>
+    <Compile Include="Components\Habitants\Habitants.Designer.cs">
+      <DependentUpon>Habitants.cs</DependentUpon>
     </Compile>
     <Compile Include="DeleteHabitant.cs">
       <SubType>Form</SubType>
@@ -208,11 +219,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisterHabitant.cs">
+    <Compile Include="Components\Habitants\HabitantDataRegistration.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegisterHabitant.Designer.cs">
-      <DependentUpon>RegisterHabitant.cs</DependentUpon>
+    <Compile Include="Components\Habitants\HabitantDataRegistration.Designer.cs">
+      <DependentUpon>HabitantDataRegistration.cs</DependentUpon>
     </Compile>
     <Compile Include="RestServices\RsBase.cs" />
     <Compile Include="RestServices\RsCamera.cs" />
@@ -222,11 +233,14 @@
     <EmbeddedResource Include="Alarms.resx">
       <DependentUpon>Alarms.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CamerasAndMonitors.resx">
+    <EmbeddedResource Include="Components\CamerasAndMonitors\CamerasAndMonitors.resx">
       <DependentUpon>CamerasAndMonitors.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\CamerasAndMonitors\CameraSelection.resx">
       <DependentUpon>CameraSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Habitants\HabitantImagesRegistration.resx">
+      <DependentUpon>HabitantImagesRegistration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ControlCenter.resx">
       <DependentUpon>ControlCenter.cs</DependentUpon>
@@ -234,8 +248,8 @@
     <EmbeddedResource Include="DashBoardMenu.resx">
       <DependentUpon>DashBoardMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\CamerasAndMonitors\ListHabitant.resx">
-      <DependentUpon>ListHabitant.cs</DependentUpon>
+    <EmbeddedResource Include="Components\Habitants\Habitants.resx">
+      <DependentUpon>Habitants.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeleteHabitant.resx">
       <DependentUpon>DeleteHabitant.cs</DependentUpon>
@@ -268,8 +282,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="RegisterHabitant.resx">
-      <DependentUpon>RegisterHabitant.cs</DependentUpon>
+    <EmbeddedResource Include="Components\Habitants\HabitantDataRegistration.resx">
+      <DependentUpon>HabitantDataRegistration.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -287,7 +301,9 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Images\Habitant\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Application\002d.PNG" />
     <Content Include="Images\Application\alarm1.png" />

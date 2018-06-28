@@ -19,17 +19,18 @@ namespace Animus.BussinesRules
             rs = new RsHabitant();
             daHabitant = new DaHabitant();
         }
+
         public CoHabitant Registry(CoHabitant habitant, out Boolean internetStatus)
         {
-
             internetStatus = true;
-
             habitant = rs.Save(habitant, out internetStatus);
-            if (habitant == null || habitant.idhabitant == 0)
+            if (habitant == null || habitant.id == 0)
                 return null;
             else
+            {
+                this.daHabitant.Save(habitant);
                 return habitant;
-
+            }
         }
 
         public void Save(CoHabitant habitant)

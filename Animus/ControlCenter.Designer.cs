@@ -51,7 +51,7 @@ namespace Animus
             this.buninfuMenu = new BunifuAnimatorNS.BunifuTransition(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.alarms1 = new Animus.Alarms();
-            this.listHabitant1 = new Animus.ListHabitant(home);//pasar objeto
+            this.listHabitant1 = new Animus.Habitants(home);//pasar objeto
 
             this.panelMenu.SuspendLayout();
             this.panelHeader.SuspendLayout();
@@ -400,6 +400,6 @@ namespace Animus
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton3;
         private BunifuAnimatorNS.BunifuTransition buninfuMenu;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private ListHabitant listHabitant1;
+        private Habitants listHabitant1;
     }
 }

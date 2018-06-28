@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Animus.Common
 {
-    class CoTypePerson
+    public class CoTypePerson
     {
 
         private int _id;

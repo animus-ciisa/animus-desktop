@@ -25,11 +25,13 @@ namespace Animus.DataBase
     class DbContext
     {
 
-        public static String connectionString = ConfigurationManager.AppSettings["connectionString"];
+        public static String connectionString = @"..\..\DataBase\Dbanimus.db";
 
         public static SQLiteConnection GetInstance()
         {
-            var db = new SQLiteConnection(DbContext.connectionString);
+            var db = new SQLiteConnection(
+                string.Format("Data Source={0};Version=3;", DbContext.connectionString)
+                );
             db.Open();
             return db;
         }

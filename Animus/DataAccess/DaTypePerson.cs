@@ -30,9 +30,9 @@ namespace Animus.DataAccess
             return typeperson;
         }
 
-        internal int getIntType(string name)
+        internal CoTypePerson GetByName(string name)
         {
-            int res = 0;
+            //int res = 0;
             var query = "SELECT * FROM TypePerson WHERE name = ?;";
             DbParameter[] parametersSelect = {
                 new DbParameter("name", name)
@@ -40,9 +40,15 @@ namespace Animus.DataAccess
             var result = DbContext.Select(query, parametersSelect);
             if (result.Count() > 0)
             {
-                res = Convert.ToInt32(result[0]["id"].ToString());
+                return new CoTypePerson
+                {
+                    name = result[0]["name"].ToString(),
+                    id = Convert.ToInt32(result[0]["id"].ToString()),
+
+                };
+                //res = Convert.ToInt32(result[0]["id"].ToString());
             }
-            return res;
+            return null;
         }
     }
 }

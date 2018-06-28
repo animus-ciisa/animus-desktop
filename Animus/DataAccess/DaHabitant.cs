@@ -10,40 +10,34 @@ namespace Animus.DataAccess
 {
     class DaHabitant
     {
-
-
         public void Save(CoHabitant habitant)
         {
-
-
-
-            var query = "SELECT * FROM Habitant WHERE idhabitant = ?;";
+            var query = "SELECT * FROM Habitant WHERE id = ?;";
             DbParameter[] parametersSelect = {
-                new DbParameter("idhabitant", habitant.idhabitant.ToString())
+                new DbParameter("id", habitant.id.ToString())
              };
             var result = DbContext.Select(query, parametersSelect);
             if (result.Count() > 0)
             {
-                query = "UPDATE Habitant SET name = ?, lastname = ?,birthdate = ? WHERE  idhabitant = ?;";
+                query = "UPDATE Habitant SET name = ?, lastname = ?, birthdate = ? WHERE  id = ?;";
                 DbParameter[] parameters = {
                     new DbParameter("name", (habitant.name.ToString())),
                     new DbParameter("lastname", (habitant.lastname.ToString())),
                     new DbParameter("birthdate", habitant.birthdate.ToString("yyyy-MM-dd")),
-                    new DbParameter("idhabitant", habitant.idhabitant.ToString())
+                    new DbParameter("id", habitant.id.ToString())
                 };
                 DbContext.InsertOrUpdate(query, parameters);
             }
             else
             {
-                query = "INSERT INTO Habitant VALUES(?, ? , ?,?,?,?,?)";
+                query = "INSERT INTO Habitant VALUES(?, ? ,?, ?, ?, ?)";
                 DbParameter[] parameters = {
-                    new DbParameter("idhabitant", habitant.idhabitant.ToString()),
-                    new DbParameter("idhome", habitant.idhome.ToString()),
-                    new DbParameter("idtypepeperson", habitant.idtypepeperson.ToString()),
+                    new DbParameter("id", habitant.id.ToString()),
+                    new DbParameter("type", habitant.typePerson.id.ToString()),
                     new DbParameter("name", habitant.name.ToString()),
                     new DbParameter("lastname", habitant.lastname),
                     new DbParameter("birthdate", habitant.birthdate.ToString("yyyy-MM-dd")),
-                    new DbParameter("registrationdate", DateTime.Now.ToString(("yyyy-MM-dd")))
+                    new DbParameter("created", DateTime.Now.ToString(("yyyy-MM-dd")))
                 };
                 DbContext.InsertOrUpdate(query, parameters);
             }

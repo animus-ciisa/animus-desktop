@@ -23,9 +23,9 @@ namespace Animus.BussinesRules
             return typePerson;
 
         }
-        public int getIntType(string name)
+        public CoTypePerson ByName(string name)
         {
-            return this.daTypePerson.getIntType(name);
+            return this.daTypePerson.GetByName(name);
         }
     }
 }

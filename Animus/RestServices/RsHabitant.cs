@@ -19,10 +19,9 @@ namespace Animus.RestServices
             JObject request = new JObject();
             request.Add("name", habitant.name);
             request.Add("lastname", habitant.lastname);
-            request.Add("brithday", habitant.birthdate.ToString("yyyy-MM-dd"));
-            request.Add("type", habitant.idtypepeperson);//tipo de persona
+            request.Add("birthday", habitant.birthdate.ToString("yyyy-MM-dd"));
+            request.Add("type", habitant.typePerson.id.ToString());
             Console.WriteLine("JSON: " + request.ToString());
-            //string requestParams = "{ \"email\": \"" + home.mail + "\", \"password\": \"" + home.password + "\" }";
             try
             {
                 HttpWebRequest webRequest = this.CreatePost("habitant", request.ToString(), out internetStatus);
@@ -37,8 +36,7 @@ namespace Animus.RestServices
                             CoRestResponse parsedPresponse = this.ParseResponse(rawJson);
                             if (parsedPresponse != null && parsedPresponse.status)
                             {
-                                habitant.idhabitant = Convert.ToInt32(parsedPresponse.data["Id"].ToString());
-
+                                habitant.id = Convert.ToInt32(parsedPresponse.data["id"].ToString());
                             }
                         }
                     }

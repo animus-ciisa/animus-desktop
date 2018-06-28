@@ -49,7 +49,7 @@ namespace Animus.DataAccess
         {
             var query = "SELECT id, token FROM Sesion " +
                         "WHERE (end is null) or (end = '') " +
-                        "ORDER BY start DESC LIMIT 1";
+                        "ORDER BY id DESC LIMIT 1";
             var result = DbContext.Select(query);
             if (result.Count() > 0)
             {

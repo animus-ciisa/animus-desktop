@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Animus.Common
 {
-    class CoHabitant
+    public class CoHabitant
     {
-        private int _idhabitant;
+        private int _id;
         private int _idhome;
+        private CoTypePerson _coTypePerson;
         private int _idtypepeperson;
         private string _name;
         private string _lastname;
@@ -17,10 +18,10 @@ namespace Animus.Common
         private DateTime _registrationdate;
 
 
-        public int idhabitant
+        public int id
         {
-            get { return this._idhabitant; }
-            set { this._idhabitant = value; }
+            get { return this._id; }
+            set { this._id = value; }
         }
 
         public int idhome
@@ -33,7 +34,11 @@ namespace Animus.Common
             get { return this._idtypepeperson; }
             set { this._idtypepeperson = value; }
         }
-
+        public CoTypePerson typePerson
+        {
+            get { return this._coTypePerson; }
+            set { this._coTypePerson = value; }
+        }
         public string name
         {
             get { return this._name; }
